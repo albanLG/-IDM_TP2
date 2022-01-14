@@ -1,0 +1,35 @@
+grammar org.xtext.example.jppjson.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/jppjson/MyDsl"
+
+
+Expression:
+	BinExp | Value | Entity;
+
+Entity:
+	JObject|JArray;
+
+Element:
+	key=STRING ':' value=Value;
+		 
+Value:
+	JsonString | JsonBoolean | JsonEmpty | JsonInteger;
+
+JsonString : val=STRING;
+
+JsonBoolean:
+	val=('true' | 'false');
+
+JsonEmpty:
+	val='null';
+	
+JsonInteger : val=INT;
+
+JObject:
+	'{' ((element+=Element) (',' element+=Element)*)? '}';
+	
+JArray:
+	'[' ((expression+=Expression) (',' expression+=Expression)*)? ']';
+
+BinExp:
+	val=STRING '+' rval=STRING;

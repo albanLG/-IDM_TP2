@@ -16,8 +16,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.xtext.example.mydsl1.myDsl.ProjectModel;
-import org.xtext.example.mydsl1.tests.MyDslInjectorProvider;
-import org.xtext.example.mydsl1.tests.PythonCompiler;
 
 @ExtendWith(InjectionExtension.class)
 @InjectWith(MyDslInjectorProvider.class)
