@@ -7,7 +7,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
+import org.xtext.example.jppjson.myDsl.Element;
+import org.xtext.example.jppjson.myDsl.Entity;
 import org.xtext.example.jppjson.myDsl.Expression;
+import org.xtext.example.jppjson.myDsl.JObject;
 import org.xtext.example.jppjson.myDsl.JsonString;
 import org.xtext.example.jppjson.myDsl.Value;
 
@@ -16,13 +19,16 @@ import com.google.common.io.Files;
 public class JacksonCompiler {
 	private Expression _expression;
 	private String test;
+	private String key;
+	private String value;
 	
 	JacksonCompiler(Expression expression){
 		this._expression = expression;
 	}
 	
 	public void compileAndRun() throws IOException {
-				
+		
+			 
 		if (_expression instanceof Value) {
 			
 			Value v = (Value) _expression;
@@ -30,6 +36,19 @@ public class JacksonCompiler {
 				test = ((JsonString) v).getVal();
 			}
 			
+		}
+		else if (_expression instanceof Entity) {
+			Entity e = (Entity) _expression;
+			if(e instanceof JObject) {
+				Element element = (Element) ((JObject) e).getElement();
+				this.key = element.getKey();
+				Value v = element.getValue();
+				if(v instanceof JsonString) {
+					this.value = ((JsonString) v).getVal();
+				}
+			
+				
+			}
 		}
 				
 		String javaCode = "package jpp;\r\n"
