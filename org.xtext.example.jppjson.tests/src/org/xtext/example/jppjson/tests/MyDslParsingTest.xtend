@@ -20,12 +20,12 @@ class MyDslParsingTest {
 	
 	@Test
 	def void loadModel() {
-		val result = parseHelper.parse(''' "Hello" ''')
+		val result = parseHelper.parse(''' {"key":"value"} ''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
 		
-		val JacksonCompiler cmpJava = new JacksonCompiler(result)
+		val JavaCompiler cmpJava = new JavaCompiler(result)
 		cmpJava.compileAndRun
 	}
 }

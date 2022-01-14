@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
+import org.eclipse.emf.common.util.EList;
 import org.xtext.example.jppjson.myDsl.Element;
 import org.xtext.example.jppjson.myDsl.Entity;
 import org.xtext.example.jppjson.myDsl.Expression;
@@ -16,13 +17,13 @@ import org.xtext.example.jppjson.myDsl.Value;
 
 import com.google.common.io.Files;
 
-public class JacksonCompiler {
+public class JavaCompiler {
 	private Expression _expression;
 	private String test;
 	private String key;
 	private String value;
 	
-	JacksonCompiler(Expression expression){
+	JavaCompiler(Expression expression){
 		this._expression = expression;
 	}
 	
@@ -33,18 +34,19 @@ public class JacksonCompiler {
 			
 			Value v = (Value) _expression;
 			if (v instanceof JsonString) {
-				test = ((JsonString) v).getVal();
+				this.test = ((JsonString) v).getVal();
 			}
 			
 		}
 		else if (_expression instanceof Entity) {
 			Entity e = (Entity) _expression;
 			if(e instanceof JObject) {
-				Element element = (Element) ((JObject) e).getElement();
-				this.key = element.getKey();
-				Value v = element.getValue();
+				EList<Element> elements = ((JObject) e).getElement();
+				Element ele = elements.get(0);
+				key = ele.getKey();
+				Value v = ele.getValue();
 				if(v instanceof JsonString) {
-					this.value = ((JsonString) v).getVal();
+					value = ((JsonString) v).getVal();
 				}
 			
 				
@@ -54,18 +56,19 @@ public class JacksonCompiler {
 		String javaCode = "package jpp;\r\n"
 				+ "class FirstApp {\r\n"
 				+ "   public static void main (String[] args){\r\n"
-				+ "    System.out.println("+"\""+test+"\""+");\r\n"
+				//+"    System.out.println("+"\""+test+"\""+");\r\n"
+				+ "    System.out.println("+"\""+key+":"+value+"\""+");\r\n"
 				+ "   }\r\n"
 				+ "}";
 		
 		String JAVA_OUTPUT = "jpp.java";
-		 
+		
 		
 		Files.write(javaCode.getBytes(), new File(JAVA_OUTPUT));
 		
 		Process p = Runtime.getRuntime().exec("javac -d . " + JAVA_OUTPUT);
 		
-		Process testp = Runtime.getRuntime().exec("java -classpath . " + "jpp.FirstApp");
+		Process testp = Runtime.getRuntime().exec("java " + "jpp.FirstApp");
 		
 
 		
