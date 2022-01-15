@@ -20,10 +20,10 @@ class MyDslParsingTest {
 	
 	@Test
 	def void loadModel() {
-		val result = parseHelper.parse(''' {"key":"value"} ''')
+		val result = parseHelper.parse(''' {"key":"expected value"} ''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
-		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: «errors.join(", ")»''')
+		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: ï¿½errors.join(", ")ï¿½''')
 		
 		val JavaCompiler cmpJava = new JavaCompiler(result)
 		cmpJava.compileAndRun

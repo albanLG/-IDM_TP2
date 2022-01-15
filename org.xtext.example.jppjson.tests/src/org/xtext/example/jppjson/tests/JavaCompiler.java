@@ -19,7 +19,6 @@ import com.google.common.io.Files;
 
 public class JavaCompiler {
 	private Expression _expression;
-	private String test;
 	private String key;
 	private String value;
 	
@@ -27,31 +26,9 @@ public class JavaCompiler {
 		this._expression = expression;
 	}
 	
-	public void compileAndRun() throws IOException {
+	public void compileAndRun() throws IOException {	 
 		
-			 
-		if (_expression instanceof Value) {
-			
-			Value v = (Value) _expression;
-			if (v instanceof JsonString) {
-				this.test = ((JsonString) v).getVal();
-			}
-			
-		}
-//		else if (_expression instanceof Entity) {
-//			Entity e = (Entity) _expression;
-//			if(e instanceof JObject) {
-//				EList<Element> elements = ((JObject) e).getElement();
-//				Element ele = elements.get(0);
-//				key = ele.getKey();
-//				Value v = ele.getValue();
-//				if(v instanceof JsonString) {
-//					value = ((JsonString) v).getVal();
-//				}
-//			
-//				
-//			}
-//		}
+		doExpr(this._expression);
 				
 		String javaCode = "package jpp;\r\n"
 				+ "class FirstApp {\r\n"
@@ -88,8 +65,39 @@ public class JavaCompiler {
 			while ((err = stdError.readLine()) != null) {
 		        System.out.println(err);
 		    }
-		
-		
+	}
+	
+	public void doExpr(Expression exp) {
+		if (exp instanceof Value) {	
+			Value v = (Value) exp;
+			doValue(v);
+		}
+		else if (exp instanceof Entity) {
+			Entity e = (Entity) exp;
+			doEntity(e);
+		}
+		else {
+			//BinExp
+		}
+	}
+	
+	public void doValue(Value v) {
+		if (v instanceof JsonString) {
+			this.value = ((JsonString) v).getVal();
+		}
+	}
+	
+	public void doEntity(Entity e) {
+		if(e instanceof JObject) {
+			EList<Element> elements = ((JObject) e).getElement();
+			Element ele = elements.get(0);
+			key = ele.getKey();
+			Expression exp2 = ele.getValue();
+			doExpr(exp2);
+		}
+		else {//e instanceof JArray
+			
+		}
 	}
 
 }
