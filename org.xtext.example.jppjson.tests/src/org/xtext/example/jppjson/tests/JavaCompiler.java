@@ -38,20 +38,20 @@ public class JavaCompiler {
 			}
 			
 		}
-		else if (_expression instanceof Entity) {
-			Entity e = (Entity) _expression;
-			if(e instanceof JObject) {
-				EList<Element> elements = ((JObject) e).getElement();
-				Element ele = elements.get(0);
-				key = ele.getKey();
-				Value v = ele.getValue();
-				if(v instanceof JsonString) {
-					value = ((JsonString) v).getVal();
-				}
-			
-				
-			}
-		}
+//		else if (_expression instanceof Entity) {
+//			Entity e = (Entity) _expression;
+//			if(e instanceof JObject) {
+//				EList<Element> elements = ((JObject) e).getElement();
+//				Element ele = elements.get(0);
+//				key = ele.getKey();
+//				Value v = ele.getValue();
+//				if(v instanceof JsonString) {
+//					value = ((JsonString) v).getVal();
+//				}
+//			
+//				
+//			}
+//		}
 				
 		String javaCode = "package jpp;\r\n"
 				+ "class FirstApp {\r\n"

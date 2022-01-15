@@ -51,12 +51,12 @@ public interface Element extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(Value)
+   * @see #setValue(Expression)
    * @see org.xtext.example.jppjson.myDsl.MyDslPackage#getElement_Value()
    * @model containment="true"
    * @generated
    */
-  Value getValue();
+  Expression getValue();
 
   /**
    * Sets the value of the '{@link org.xtext.example.jppjson.myDsl.Element#getValue <em>Value</em>}' containment reference.
@@ -66,6 +66,6 @@ public interface Element extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(Value value);
+  void setValue(Expression value);
 
 } // Element

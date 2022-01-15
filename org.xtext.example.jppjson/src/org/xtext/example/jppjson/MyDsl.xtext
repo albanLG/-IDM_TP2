@@ -10,7 +10,7 @@ Entity:
 	JObject|JArray;
 
 Element:
-	key=STRING ':' value=Value;
+	key=STRING ':' value=Expression;
 		 
 Value:
 	JsonString | JsonBoolean | JsonEmpty | JsonInteger;

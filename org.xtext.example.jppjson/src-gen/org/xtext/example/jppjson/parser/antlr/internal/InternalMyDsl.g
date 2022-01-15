@@ -182,9 +182,9 @@ ruleElement returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getElementAccess().getValueValueParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getElementAccess().getValueExpressionParserRuleCall_2_0());
 				}
-				lv_value_2_0=ruleValue
+				lv_value_2_0=ruleExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getElementRule());
@@ -193,7 +193,7 @@ ruleElement returns [EObject current=null]
 						$current,
 						"value",
 						lv_value_2_0,
-						"org.xtext.example.jppjson.MyDsl.Value");
+						"org.xtext.example.jppjson.MyDsl.Expression");
 					afterParserOrEnumRuleCall();
 				}
 			)

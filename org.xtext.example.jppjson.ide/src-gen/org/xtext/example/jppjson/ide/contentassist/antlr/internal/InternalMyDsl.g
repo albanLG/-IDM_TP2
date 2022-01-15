@@ -987,9 +987,9 @@ rule__Element__ValueAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getElementAccess().getValueValueParserRuleCall_2_0()); }
-		ruleValue
-		{ after(grammarAccess.getElementAccess().getValueValueParserRuleCall_2_0()); }
+		{ before(grammarAccess.getElementAccess().getValueExpressionParserRuleCall_2_0()); }
+		ruleExpression
+		{ after(grammarAccess.getElementAccess().getValueExpressionParserRuleCall_2_0()); }
 	)
 ;
 finally {

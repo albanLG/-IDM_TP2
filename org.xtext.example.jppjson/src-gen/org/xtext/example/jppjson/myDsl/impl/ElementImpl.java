@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.jppjson.myDsl.Element;
+import org.xtext.example.jppjson.myDsl.Expression;
 import org.xtext.example.jppjson.myDsl.MyDslPackage;
-import org.xtext.example.jppjson.myDsl.Value;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
    * @generated
    * @ordered
    */
-  protected Value value;
+  protected Expression value;
 
   /**
    * <!-- begin-user-doc -->
@@ -114,7 +114,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
    * @generated
    */
   @Override
-  public Value getValue()
+  public Expression getValue()
   {
     return value;
   }
@@ -124,9 +124,9 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(Value newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs)
   {
-    Value oldValue = value;
+    Expression oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -142,7 +142,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
    * @generated
    */
   @Override
-  public void setValue(Value newValue)
+  public void setValue(Expression newValue)
   {
     if (newValue != value)
     {
@@ -206,7 +206,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
         setKey((String)newValue);
         return;
       case MyDslPackage.ELEMENT__VALUE:
-        setValue((Value)newValue);
+        setValue((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -226,7 +226,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
         setKey(KEY_EDEFAULT);
         return;
       case MyDslPackage.ELEMENT__VALUE:
-        setValue((Value)null);
+        setValue((Expression)null);
         return;
     }
     super.eUnset(featureID);

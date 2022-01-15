@@ -942,7 +942,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
                 if ( (LA1_1==19) ) {
                     alt1=1;
                 }
-                else if ( (LA1_1==EOF||LA1_1==16||LA1_1==18) ) {
+                else if ( (LA1_1==EOF||(LA1_1>=15 && LA1_1<=16)||LA1_1==18) ) {
                     alt1=2;
                 }
                 else {
@@ -2584,7 +2584,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:838:1: ( rule__JArray__Group_1_1__0__Impl rule__JArray__Group_1_1__1 )
             // InternalMyDsl.g:839:2: rule__JArray__Group_1_1__0__Impl rule__JArray__Group_1_1__1
             {
-            pushFollow(FOLLOW_10);
+            pushFollow(FOLLOW_4);
             rule__JArray__Group_1_1__0__Impl();
 
             state._fsp--;
@@ -2739,7 +2739,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:892:1: ( rule__BinExp__Group__0__Impl rule__BinExp__Group__1 )
             // InternalMyDsl.g:893:2: rule__BinExp__Group__0__Impl rule__BinExp__Group__1
             {
-            pushFollow(FOLLOW_11);
+            pushFollow(FOLLOW_10);
             rule__BinExp__Group__0__Impl();
 
             state._fsp--;
@@ -3007,25 +3007,25 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Element__ValueAssignment_2"
-    // InternalMyDsl.g:984:1: rule__Element__ValueAssignment_2 : ( ruleValue ) ;
+    // InternalMyDsl.g:984:1: rule__Element__ValueAssignment_2 : ( ruleExpression ) ;
     public final void rule__Element__ValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:988:1: ( ( ruleValue ) )
-            // InternalMyDsl.g:989:2: ( ruleValue )
+            // InternalMyDsl.g:988:1: ( ( ruleExpression ) )
+            // InternalMyDsl.g:989:2: ( ruleExpression )
             {
-            // InternalMyDsl.g:989:2: ( ruleValue )
-            // InternalMyDsl.g:990:3: ruleValue
+            // InternalMyDsl.g:989:2: ( ruleExpression )
+            // InternalMyDsl.g:990:3: ruleExpression
             {
-             before(grammarAccess.getElementAccess().getValueValueParserRuleCall_2_0()); 
+             before(grammarAccess.getElementAccess().getValueExpressionParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
-            ruleValue();
+            ruleExpression();
 
             state._fsp--;
 
-             after(grammarAccess.getElementAccess().getValueValueParserRuleCall_2_0()); 
+             after(grammarAccess.getElementAccess().getValueExpressionParserRuleCall_2_0()); 
 
             }
 
@@ -3458,13 +3458,12 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000101830L});
+    public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000125830L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000008010L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_7 = new BitSet(new long[]{0x0000000000010002L});
     public static final BitSet FOLLOW_8 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_9 = new BitSet(new long[]{0x0000000000165830L});
-    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000125830L});
-    public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000080000L});
 
 }

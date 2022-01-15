@@ -95,7 +95,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Element returns Element
 	 *
 	 * Constraint:
-	 *     (key=STRING value=Value)
+	 *     (key=STRING value=Expression)
 	 */
 	protected void sequence_Element(ISerializationContext context, Element semanticObject) {
 		if (errorAcceptor != null) {
@@ -106,7 +106,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getElementAccess().getKeySTRINGTerminalRuleCall_0_0(), semanticObject.getKey());
-		feeder.accept(grammarAccess.getElementAccess().getValueValueParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getElementAccess().getValueExpressionParserRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
