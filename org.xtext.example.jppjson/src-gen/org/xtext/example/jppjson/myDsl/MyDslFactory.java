@@ -69,6 +69,15 @@ public interface MyDslFactory extends EFactory
   AddElement createAddElement();
 
   /**
+   * Returns a new object of class '<em>Remove Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Remove Element</em>'.
+   * @generated
+   */
+  RemoveElement createRemoveElement();
+
+  /**
    * Returns a new object of class '<em>Edit Object</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

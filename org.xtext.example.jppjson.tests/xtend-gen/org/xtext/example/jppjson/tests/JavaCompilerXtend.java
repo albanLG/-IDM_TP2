@@ -14,6 +14,7 @@ import org.xtext.example.jppjson.myDsl.Expression;
 import org.xtext.example.jppjson.myDsl.JsonString;
 import org.xtext.example.jppjson.myDsl.Loadfile;
 import org.xtext.example.jppjson.myDsl.Programme;
+import org.xtext.example.jppjson.myDsl.RemoveElement;
 import org.xtext.example.jppjson.myDsl.ToCSV;
 import org.xtext.example.jppjson.myDsl.ToString;
 import org.xtext.example.jppjson.myDsl.Value;
@@ -111,6 +112,11 @@ public class JavaCompilerXtend {
           String _doExportToCSV = this.doExportToCSV(((ToCSV)command));
           java = (_java_2 + _doExportToCSV);
         }
+        if ((command instanceof RemoveElement)) {
+          String _java_3 = java;
+          String _doRemoveElement = this.doRemoveElement(((RemoveElement)command));
+          java = (_java_3 + _doRemoveElement);
+        }
       }
     }
     return java;
@@ -150,6 +156,29 @@ public class JavaCompilerXtend {
     _builder.newLine();
     _builder.append("file.flush();");
     _builder.newLine();
+    _builder.newLine();
+    String java = _builder.toString();
+    return java;
+  }
+  
+  public String doRemoveElement(final RemoveElement removeElement) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("((ObjectNode) rootNode).remove(\"");
+    String _key = removeElement.getKey();
+    _builder.append(_key);
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("String resultUpdate = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);");
+    _builder.newLine();
+    _builder.append("      \t\t");
+    _builder.newLine();
+    _builder.append("FileWriter file = new FileWriter(\"");
+    _builder.append(this.filePath);
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("file.write(resultUpdate);");
+    _builder.newLine();
+    _builder.append("file.flush();");
     _builder.newLine();
     String java = _builder.toString();
     return java;

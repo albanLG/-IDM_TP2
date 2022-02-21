@@ -20,7 +20,7 @@ class JavaCompilerTest {
 		
 		val result = parseHelper.parse(''' 
 		Load("testvide.json"){
-			ExportCSV("export.csv");
+			RemoveElement("void");
 		}
 		''')
 		

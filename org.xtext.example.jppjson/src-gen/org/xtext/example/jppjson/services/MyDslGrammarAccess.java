@@ -88,18 +88,19 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final RuleCall cReadParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
 		private final RuleCall cEditObjectParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final RuleCall cAddElementParserRuleCall_0_2 = (RuleCall)cAlternatives_0.eContents().get(2);
-		private final RuleCall cToStringParserRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
-		private final RuleCall cToCSVParserRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
+		private final RuleCall cRemoveElementParserRuleCall_0_3 = (RuleCall)cAlternatives_0.eContents().get(3);
+		private final RuleCall cToStringParserRuleCall_0_4 = (RuleCall)cAlternatives_0.eContents().get(4);
+		private final RuleCall cToCSVParserRuleCall_0_5 = (RuleCall)cAlternatives_0.eContents().get(5);
 		private final Keyword cSemicolonKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//Command :
-		//     (  Read |EditObject|AddElement| ToString | ToCSV) ';';
+		//     (  Read |EditObject|AddElement|RemoveElement| ToString | ToCSV) ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(  Read |EditObject|AddElement| ToString | ToCSV) ';'
+		//(  Read |EditObject|AddElement|RemoveElement| ToString | ToCSV) ';'
 		public Group getGroup() { return cGroup; }
 		
-		//(  Read |EditObject|AddElement| ToString | ToCSV)
+		//(  Read |EditObject|AddElement|RemoveElement| ToString | ToCSV)
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
 		//Read
@@ -111,11 +112,14 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//AddElement
 		public RuleCall getAddElementParserRuleCall_0_2() { return cAddElementParserRuleCall_0_2; }
 		
+		//RemoveElement
+		public RuleCall getRemoveElementParserRuleCall_0_3() { return cRemoveElementParserRuleCall_0_3; }
+		
 		//ToString
-		public RuleCall getToStringParserRuleCall_0_3() { return cToStringParserRuleCall_0_3; }
+		public RuleCall getToStringParserRuleCall_0_4() { return cToStringParserRuleCall_0_4; }
 		
 		//ToCSV
-		public RuleCall getToCSVParserRuleCall_0_4() { return cToCSVParserRuleCall_0_4; }
+		public RuleCall getToCSVParserRuleCall_0_5() { return cToCSVParserRuleCall_0_5; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
@@ -171,6 +175,34 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//Element
 		public RuleCall getElementElementParserRuleCall_1_0() { return cElementElementParserRuleCall_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
+	}
+	public class RemoveElementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.jppjson.MyDsl.RemoveElement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRemoveElementKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cKeyAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cKeySTRINGTerminalRuleCall_1_0 = (RuleCall)cKeyAssignment_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//RemoveElement:
+		//    'RemoveElement('key=STRING')'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'RemoveElement('key=STRING')'
+		public Group getGroup() { return cGroup; }
+		
+		//'RemoveElement('
+		public Keyword getRemoveElementKeyword_0() { return cRemoveElementKeyword_0; }
+		
+		//key=STRING
+		public Assignment getKeyAssignment_1() { return cKeyAssignment_1; }
+		
+		//STRING
+		public RuleCall getKeySTRINGTerminalRuleCall_1_0() { return cKeySTRINGTerminalRuleCall_1_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_2() { return cRightParenthesisKeyword_2; }
@@ -568,6 +600,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	private final CommandElements pCommand;
 	private final ReadElements pRead;
 	private final AddElementElements pAddElement;
+	private final RemoveElementElements pRemoveElement;
 	private final EditObjectElements pEditObject;
 	private final ToStringElements pToString;
 	private final ToCSVElements pToCSV;
@@ -597,6 +630,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		this.pCommand = new CommandElements();
 		this.pRead = new ReadElements();
 		this.pAddElement = new AddElementElements();
+		this.pRemoveElement = new RemoveElementElements();
 		this.pEditObject = new EditObjectElements();
 		this.pToString = new ToStringElements();
 		this.pToCSV = new ToCSVElements();
@@ -662,7 +696,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//Command :
-	//     (  Read |EditObject|AddElement| ToString | ToCSV) ';';
+	//     (  Read |EditObject|AddElement|RemoveElement| ToString | ToCSV) ';';
 	public CommandElements getCommandAccess() {
 		return pCommand;
 	}
@@ -690,6 +724,17 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	
 	public ParserRule getAddElementRule() {
 		return getAddElementAccess().getRule();
+	}
+	
+	//RemoveElement:
+	//    'RemoveElement('key=STRING')'
+	//;
+	public RemoveElementElements getRemoveElementAccess() {
+		return pRemoveElement;
+	}
+	
+	public ParserRule getRemoveElementRule() {
+		return getRemoveElementAccess().getRule();
 	}
 	
 	//EditObject:

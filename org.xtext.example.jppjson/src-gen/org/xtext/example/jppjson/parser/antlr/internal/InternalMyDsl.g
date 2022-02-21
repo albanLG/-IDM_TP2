@@ -213,26 +213,35 @@ ruleCommand returns [EObject current=null]
 			}
 			    |
 			{
-				newCompositeNode(grammarAccess.getCommandAccess().getToStringParserRuleCall_0_3());
+				newCompositeNode(grammarAccess.getCommandAccess().getRemoveElementParserRuleCall_0_3());
 			}
-			this_ToString_3=ruleToString
+			this_RemoveElement_3=ruleRemoveElement
 			{
-				$current = $this_ToString_3.current;
+				$current = $this_RemoveElement_3.current;
 				afterParserOrEnumRuleCall();
 			}
 			    |
 			{
-				newCompositeNode(grammarAccess.getCommandAccess().getToCSVParserRuleCall_0_4());
+				newCompositeNode(grammarAccess.getCommandAccess().getToStringParserRuleCall_0_4());
 			}
-			this_ToCSV_4=ruleToCSV
+			this_ToString_4=ruleToString
 			{
-				$current = $this_ToCSV_4.current;
+				$current = $this_ToString_4.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			{
+				newCompositeNode(grammarAccess.getCommandAccess().getToCSVParserRuleCall_0_5());
+			}
+			this_ToCSV_5=ruleToCSV
+			{
+				$current = $this_ToCSV_5.current;
 				afterParserOrEnumRuleCall();
 			}
 		)
-		otherlv_5=';'
+		otherlv_6=';'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getCommandAccess().getSemicolonKeyword_1());
+			newLeafNode(otherlv_6, grammarAccess.getCommandAccess().getSemicolonKeyword_1());
 		}
 	)
 ;
@@ -324,6 +333,51 @@ ruleAddElement returns [EObject current=null]
 		otherlv_2=')'
 		{
 			newLeafNode(otherlv_2, grammarAccess.getAddElementAccess().getRightParenthesisKeyword_2());
+		}
+	)
+;
+
+// Entry rule entryRuleRemoveElement
+entryRuleRemoveElement returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRemoveElementRule()); }
+	iv_ruleRemoveElement=ruleRemoveElement
+	{ $current=$iv_ruleRemoveElement.current; }
+	EOF;
+
+// Rule RemoveElement
+ruleRemoveElement returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='RemoveElement('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getRemoveElementAccess().getRemoveElementKeyword_0());
+		}
+		(
+			(
+				lv_key_1_0=RULE_STRING
+				{
+					newLeafNode(lv_key_1_0, grammarAccess.getRemoveElementAccess().getKeySTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRemoveElementRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"key",
+						lv_key_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getRemoveElementAccess().getRightParenthesisKeyword_2());
 		}
 	)
 ;

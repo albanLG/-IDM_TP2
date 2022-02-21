@@ -11,13 +11,17 @@ Loadfile :
 	
 	;
 Command :
-	 (  Read |EditObject|AddElement| ToString | ToCSV) ';';
+	 (  Read |EditObject|AddElement|RemoveElement| ToString | ToCSV) ';';
 
 Read:
 	'Read('path=STRING')';
 	
 AddElement:
 	'AddElement('element=Element')'
+;
+
+RemoveElement:
+	'RemoveElement('key=STRING')'
 ;
 EditObject:
 	'EditObject('key=STRING','value=Expression')'

@@ -28,6 +28,7 @@ import org.xtext.example.jppjson.myDsl.Loadfile;
 import org.xtext.example.jppjson.myDsl.MyDslPackage;
 import org.xtext.example.jppjson.myDsl.Programme;
 import org.xtext.example.jppjson.myDsl.Read;
+import org.xtext.example.jppjson.myDsl.RemoveElement;
 import org.xtext.example.jppjson.myDsl.ToCSV;
 import org.xtext.example.jppjson.myDsl.ToString;
 import org.xtext.example.jppjson.services.MyDslGrammarAccess;
@@ -84,6 +85,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.READ:
 				sequence_Read(context, (Read) semanticObject); 
+				return; 
+			case MyDslPackage.REMOVE_ELEMENT:
+				sequence_RemoveElement(context, (RemoveElement) semanticObject); 
 				return; 
 			case MyDslPackage.TO_CSV:
 				sequence_ToCSV(context, (ToCSV) semanticObject); 
@@ -321,6 +325,25 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getReadAccess().getPathSTRINGTerminalRuleCall_1_0(), semanticObject.getPath());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Command returns RemoveElement
+	 *     RemoveElement returns RemoveElement
+	 *
+	 * Constraint:
+	 *     key=STRING
+	 */
+	protected void sequence_RemoveElement(ISerializationContext context, RemoveElement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.REMOVE_ELEMENT__KEY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.REMOVE_ELEMENT__KEY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRemoveElementAccess().getKeySTRINGTerminalRuleCall_1_0(), semanticObject.getKey());
 		feeder.finish();
 	}
 	

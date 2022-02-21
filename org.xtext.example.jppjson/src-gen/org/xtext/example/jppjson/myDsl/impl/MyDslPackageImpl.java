@@ -28,6 +28,7 @@ import org.xtext.example.jppjson.myDsl.MyDslFactory;
 import org.xtext.example.jppjson.myDsl.MyDslPackage;
 import org.xtext.example.jppjson.myDsl.Programme;
 import org.xtext.example.jppjson.myDsl.Read;
+import org.xtext.example.jppjson.myDsl.RemoveElement;
 import org.xtext.example.jppjson.myDsl.ToCSV;
 import org.xtext.example.jppjson.myDsl.ToString;
 import org.xtext.example.jppjson.myDsl.Value;
@@ -74,6 +75,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass addElementEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass removeElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -344,6 +352,28 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EReference getAddElement_Element()
   {
     return (EReference)addElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRemoveElement()
+  {
+    return removeElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRemoveElement_Key()
+  {
+    return (EAttribute)removeElementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -700,6 +730,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     addElementEClass = createEClass(ADD_ELEMENT);
     createEReference(addElementEClass, ADD_ELEMENT__ELEMENT);
 
+    removeElementEClass = createEClass(REMOVE_ELEMENT);
+    createEAttribute(removeElementEClass, REMOVE_ELEMENT__KEY);
+
     editObjectEClass = createEClass(EDIT_OBJECT);
     createEAttribute(editObjectEClass, EDIT_OBJECT__KEY);
     createEReference(editObjectEClass, EDIT_OBJECT__VALUE);
@@ -774,6 +807,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Add supertypes to classes
     readEClass.getESuperTypes().add(this.getCommand());
     addElementEClass.getESuperTypes().add(this.getCommand());
+    removeElementEClass.getESuperTypes().add(this.getCommand());
     editObjectEClass.getESuperTypes().add(this.getCommand());
     toStringEClass.getESuperTypes().add(this.getCommand());
     toCSVEClass.getESuperTypes().add(this.getCommand());
@@ -802,6 +836,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(addElementEClass, AddElement.class, "AddElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAddElement_Element(), this.getElement(), null, "element", null, 0, 1, AddElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(removeElementEClass, RemoveElement.class, "RemoveElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRemoveElement_Key(), ecorePackage.getEString(), "key", null, 0, 1, RemoveElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(editObjectEClass, EditObject.class, "EditObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEditObject_Key(), ecorePackage.getEString(), "key", null, 0, 1, EditObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

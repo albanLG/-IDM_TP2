@@ -40,6 +40,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCommandAccess().getGroup(), "rule__Command__Group__0");
 			builder.put(grammarAccess.getReadAccess().getGroup(), "rule__Read__Group__0");
 			builder.put(grammarAccess.getAddElementAccess().getGroup(), "rule__AddElement__Group__0");
+			builder.put(grammarAccess.getRemoveElementAccess().getGroup(), "rule__RemoveElement__Group__0");
 			builder.put(grammarAccess.getEditObjectAccess().getGroup(), "rule__EditObject__Group__0");
 			builder.put(grammarAccess.getToStringAccess().getGroup(), "rule__ToString__Group__0");
 			builder.put(grammarAccess.getToCSVAccess().getGroup(), "rule__ToCSV__Group__0");
@@ -56,6 +57,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLoadfileAccess().getCommandsAssignment_4(), "rule__Loadfile__CommandsAssignment_4");
 			builder.put(grammarAccess.getReadAccess().getPathAssignment_1(), "rule__Read__PathAssignment_1");
 			builder.put(grammarAccess.getAddElementAccess().getElementAssignment_1(), "rule__AddElement__ElementAssignment_1");
+			builder.put(grammarAccess.getRemoveElementAccess().getKeyAssignment_1(), "rule__RemoveElement__KeyAssignment_1");
 			builder.put(grammarAccess.getEditObjectAccess().getKeyAssignment_1(), "rule__EditObject__KeyAssignment_1");
 			builder.put(grammarAccess.getEditObjectAccess().getValueAssignment_3(), "rule__EditObject__ValueAssignment_3");
 			builder.put(grammarAccess.getToStringAccess().getPathAssignment_1(), "rule__ToString__PathAssignment_1");

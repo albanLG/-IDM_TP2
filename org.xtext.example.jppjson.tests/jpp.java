@@ -11,24 +11,12 @@ class FirstApp {
 String strResult = "";
 ObjectMapper objMapper = new ObjectMapper();
 JsonNode rootNode = objMapper.readTree(new File("testvide.json"));
-		  Builder csvSchemaBuilder = CsvSchema.builder(); 
-		  JsonNode firstObject = rootNode;
-		  
-		  while(firstObject.elements().hasNext()) {
-			  firstObject.fieldNames().forEachRemaining(fieldName -> {
-				  
-				  csvSchemaBuilder.addColumn(fieldName);
-				  } ); 
-			  firstObject = firstObject.elements().next();
-		  }
-
-		  
-		  CsvSchema csvSchema = csvSchemaBuilder.build().withHeader();
-		  
-		  CsvMapper csvMapper = new CsvMapper(); 
-		  
-		  csvMapper.writerFor(JsonNode.class).with(csvSchema).writeValue(new File("export.csv"), rootNode);
-
+((ObjectNode) rootNode).remove("void");
+String resultUpdate = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
+      		
+FileWriter file = new FileWriter("testvide.json");
+file.write(resultUpdate);
+file.flush();
 
    }
 }

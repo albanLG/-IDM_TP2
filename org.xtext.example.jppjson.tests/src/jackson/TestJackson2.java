@@ -1,7 +1,7 @@
 package jackson;
 
 import java.io.File;
-
+import java.io.FileWriter;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,7 +22,7 @@ public class TestJackson2 {
 		//getAllArrayJsonFile(); marche pas
 		//ModifyJsonFile();
 		//CreateArrayJsonFile();
-		JsonToCSV();
+		removeJsonObject();
 		
 	  }
 	 
@@ -144,6 +144,7 @@ public class TestJackson2 {
 	  
 	  public static  String CreateArrayJsonFile()
 
+
 	  {
 	    String strResult = "";
 	    ObjectMapper objMapper = new ObjectMapper();
@@ -202,6 +203,7 @@ public class TestJackson2 {
 	  }
 	  
 	  public static String JsonToCSV() throws IOException {
+
 		  
 		  ObjectMapper objMapper = new ObjectMapper();
 		  
@@ -229,4 +231,37 @@ public class TestJackson2 {
 
 	  }
 	 
+	  public static String removeJsonObject() {
+          
+          String strResult = "";
+            ObjectMapper objMapper = new ObjectMapper();
+         
+            try
+            {
+              JsonNode rootNode = objMapper.readTree(new File("testvide.json"));
+              
+              ((ObjectNode) rootNode).remove("void");
+              String resultUpdate = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
+      		
+      		  FileWriter file = new FileWriter("testvide.json");
+      		  file.write(resultUpdate);
+      		  file.flush();
+      		
+              
+            }
+            catch (JsonProcessingException e)
+            {
+              e.printStackTrace();
+            }
+            catch (IOException e)
+            {
+              e.printStackTrace();
+            }
+         
+          
+          
+          
+        return strResult;
+
+          }
 }

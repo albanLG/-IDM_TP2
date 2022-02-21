@@ -13,6 +13,7 @@ import org.xtext.example.jppjson.myDsl.Expression
 import org.xtext.example.jppjson.myDsl.Value
 import org.xtext.example.jppjson.myDsl.JsonString
 import org.xtext.example.jppjson.myDsl.ToCSV
+import org.xtext.example.jppjson.myDsl.RemoveElement
 
 class JavaCompilerXtend {
 	val Programme prog
@@ -93,6 +94,9 @@ class JavaCompilerXtend {
 			if(command instanceof ToCSV){
 				java += doExportToCSV(command)
 			}
+			if(command instanceof RemoveElement){
+				java += doRemoveElement(command)
+			}
 		}
 		return java
 		
@@ -116,6 +120,19 @@ class JavaCompilerXtend {
 			file.write(strResult);
 			file.flush();
 			
+		'''
+		
+		return java
+	}
+	
+	def String doRemoveElement(RemoveElement removeElement){
+		var java='''			              
+			((ObjectNode) rootNode).remove("«removeElement.getKey»");
+			String resultUpdate = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
+			      		
+			FileWriter file = new FileWriter("«this.filePath»");
+			file.write(resultUpdate);
+			file.flush();
 		'''
 		
 		return java

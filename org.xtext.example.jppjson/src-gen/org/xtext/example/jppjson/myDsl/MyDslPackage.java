@@ -198,6 +198,34 @@ public interface MyDslPackage extends EPackage
   int ADD_ELEMENT_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.jppjson.myDsl.impl.RemoveElementImpl <em>Remove Element</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.jppjson.myDsl.impl.RemoveElementImpl
+   * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getRemoveElement()
+   * @generated
+   */
+  int REMOVE_ELEMENT = 5;
+
+  /**
+   * The feature id for the '<em><b>Key</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REMOVE_ELEMENT__KEY = COMMAND_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Remove Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REMOVE_ELEMENT_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.jppjson.myDsl.impl.EditObjectImpl <em>Edit Object</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -205,7 +233,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getEditObject()
    * @generated
    */
-  int EDIT_OBJECT = 5;
+  int EDIT_OBJECT = 6;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -242,7 +270,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getToString()
    * @generated
    */
-  int TO_STRING = 6;
+  int TO_STRING = 7;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -270,7 +298,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getToCSV()
    * @generated
    */
-  int TO_CSV = 7;
+  int TO_CSV = 8;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -298,7 +326,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 8;
+  int EXPRESSION = 9;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -317,7 +345,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 9;
+  int ENTITY = 10;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -336,7 +364,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getElement()
    * @generated
    */
-  int ELEMENT = 10;
+  int ELEMENT = 11;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -373,7 +401,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getValue()
    * @generated
    */
-  int VALUE = 11;
+  int VALUE = 12;
 
   /**
    * The number of structural features of the '<em>Value</em>' class.
@@ -392,7 +420,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJsonString()
    * @generated
    */
-  int JSON_STRING = 12;
+  int JSON_STRING = 13;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -420,7 +448,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJsonBoolean()
    * @generated
    */
-  int JSON_BOOLEAN = 13;
+  int JSON_BOOLEAN = 14;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -448,7 +476,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJsonEmpty()
    * @generated
    */
-  int JSON_EMPTY = 14;
+  int JSON_EMPTY = 15;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -476,7 +504,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJsonInteger()
    * @generated
    */
-  int JSON_INTEGER = 15;
+  int JSON_INTEGER = 16;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -504,7 +532,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJObject()
    * @generated
    */
-  int JOBJECT = 16;
+  int JOBJECT = 17;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' containment reference list.
@@ -532,7 +560,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJArray()
    * @generated
    */
-  int JARRAY = 17;
+  int JARRAY = 18;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference list.
@@ -560,7 +588,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getBinExp()
    * @generated
    */
-  int BIN_EXP = 18;
+  int BIN_EXP = 19;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -694,6 +722,27 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getAddElement_Element();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.jppjson.myDsl.RemoveElement <em>Remove Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Remove Element</em>'.
+   * @see org.xtext.example.jppjson.myDsl.RemoveElement
+   * @generated
+   */
+  EClass getRemoveElement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.jppjson.myDsl.RemoveElement#getKey <em>Key</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see org.xtext.example.jppjson.myDsl.RemoveElement#getKey()
+   * @see #getRemoveElement()
+   * @generated
+   */
+  EAttribute getRemoveElement_Key();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.jppjson.myDsl.EditObject <em>Edit Object</em>}'.
@@ -1101,6 +1150,24 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference ADD_ELEMENT__ELEMENT = eINSTANCE.getAddElement_Element();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.jppjson.myDsl.impl.RemoveElementImpl <em>Remove Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.jppjson.myDsl.impl.RemoveElementImpl
+     * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getRemoveElement()
+     * @generated
+     */
+    EClass REMOVE_ELEMENT = eINSTANCE.getRemoveElement();
+
+    /**
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REMOVE_ELEMENT__KEY = eINSTANCE.getRemoveElement_Key();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.jppjson.myDsl.impl.EditObjectImpl <em>Edit Object</em>}' class.

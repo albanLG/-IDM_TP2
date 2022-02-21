@@ -101,6 +101,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createAddElementAdapter();
       }
       @Override
+      public Adapter caseRemoveElement(RemoveElement object)
+      {
+        return createRemoveElementAdapter();
+      }
+      @Override
       public Adapter caseEditObject(EditObject object)
       {
         return createEditObjectAdapter();
@@ -263,6 +268,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAddElementAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.RemoveElement <em>Remove Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.jppjson.myDsl.RemoveElement
+   * @generated
+   */
+  public Adapter createRemoveElementAdapter()
   {
     return null;
   }
