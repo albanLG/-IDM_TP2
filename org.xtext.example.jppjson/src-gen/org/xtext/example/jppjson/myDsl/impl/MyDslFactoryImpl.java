@@ -69,8 +69,9 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.LOADFILE: return createLoadfile();
       case MyDslPackage.COMMAND: return createCommand();
       case MyDslPackage.READ: return createRead();
+      case MyDslPackage.ADD_ELEMENT: return createAddElement();
+      case MyDslPackage.EDIT_OBJECT: return createEditObject();
       case MyDslPackage.TO_STRING: return createToString();
-      case MyDslPackage.TO_JSON: return createToJSON();
       case MyDslPackage.TO_CSV: return createToCSV();
       case MyDslPackage.EXPRESSION: return createExpression();
       case MyDslPackage.ENTITY: return createEntity();
@@ -142,10 +143,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
-  public ToString createToString()
+  public AddElement createAddElement()
   {
-    ToStringImpl toString = new ToStringImpl();
-    return toString;
+    AddElementImpl addElement = new AddElementImpl();
+    return addElement;
   }
 
   /**
@@ -154,10 +155,22 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
-  public ToJSON createToJSON()
+  public EditObject createEditObject()
   {
-    ToJSONImpl toJSON = new ToJSONImpl();
-    return toJSON;
+    EditObjectImpl editObject = new EditObjectImpl();
+    return editObject;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ToString createToString()
+  {
+    ToStringImpl toString = new ToStringImpl();
+    return toString;
   }
 
   /**

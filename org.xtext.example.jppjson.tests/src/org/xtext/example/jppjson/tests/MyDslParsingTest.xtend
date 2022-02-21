@@ -23,13 +23,11 @@ class MyDslParsingTest {
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse(''' 
-		load("test.json"){
-			toString()
-		}
+
 		''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
-		Assertions.assertTrue(errors.isEmpty, '''Unexpected errors: ï¿½errors.join(", ")ï¿½''')
+		Assertions.assertTrue(errors.isEmpty,'''Unexpected errors: «errors.join(", ")»''')
 		
 		val JavaCompiler cmpJava = new JavaCompiler(result)
 		cmpJava.compileAndRun

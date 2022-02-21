@@ -19,8 +19,8 @@ class JavaCompilerTest {
 	def void loadModel() {
 		
 		val result = parseHelper.parse(''' 
-		Load("test.json"){
-			ExportString("test.txt");
+		Load("testvide.json"){
+			ExportCSV("export.csv");
 		}
 		''')
 		

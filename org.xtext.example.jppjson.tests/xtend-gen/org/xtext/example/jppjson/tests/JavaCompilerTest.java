@@ -25,10 +25,10 @@ public class JavaCompilerTest {
   public void loadModel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Load(\"test.json\"){");
+      _builder.append("Load(\"testvide.json\"){");
       _builder.newLine();
       _builder.append("\t");
-      _builder.append("ExportString(\"test.txt\");");
+      _builder.append("ExportCSV(\"export.csv\");");
       _builder.newLine();
       _builder.append("}");
       _builder.newLine();

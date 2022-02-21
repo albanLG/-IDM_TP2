@@ -60,6 +60,24 @@ public interface MyDslFactory extends EFactory
   Read createRead();
 
   /**
+   * Returns a new object of class '<em>Add Element</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Add Element</em>'.
+   * @generated
+   */
+  AddElement createAddElement();
+
+  /**
+   * Returns a new object of class '<em>Edit Object</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Edit Object</em>'.
+   * @generated
+   */
+  EditObject createEditObject();
+
+  /**
    * Returns a new object of class '<em>To String</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -67,15 +85,6 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   ToString createToString();
-
-  /**
-   * Returns a new object of class '<em>To JSON</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>To JSON</em>'.
-   * @generated
-   */
-  ToJSON createToJSON();
 
   /**
    * Returns a new object of class '<em>To CSV</em>'.

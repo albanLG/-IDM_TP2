@@ -10,8 +10,10 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.xtext.example.jppjson.myDsl.AddElement;
 import org.xtext.example.jppjson.myDsl.BinExp;
 import org.xtext.example.jppjson.myDsl.Command;
+import org.xtext.example.jppjson.myDsl.EditObject;
 import org.xtext.example.jppjson.myDsl.Element;
 import org.xtext.example.jppjson.myDsl.Entity;
 import org.xtext.example.jppjson.myDsl.Expression;
@@ -27,7 +29,6 @@ import org.xtext.example.jppjson.myDsl.MyDslPackage;
 import org.xtext.example.jppjson.myDsl.Programme;
 import org.xtext.example.jppjson.myDsl.Read;
 import org.xtext.example.jppjson.myDsl.ToCSV;
-import org.xtext.example.jppjson.myDsl.ToJSON;
 import org.xtext.example.jppjson.myDsl.ToString;
 import org.xtext.example.jppjson.myDsl.Value;
 
@@ -72,14 +73,21 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass toStringEClass = null;
+  private EClass addElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass toJSONEClass = null;
+  private EClass editObjectEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass toStringEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -300,9 +308,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getCommand_Path()
+  public EClass getRead()
   {
-    return (EAttribute)commandEClass.getEStructuralFeatures().get(0);
+    return readEClass;
   }
 
   /**
@@ -311,9 +319,64 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EClass getRead()
+  public EAttribute getRead_Path()
   {
-    return readEClass;
+    return (EAttribute)readEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAddElement()
+  {
+    return addElementEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAddElement_Element()
+  {
+    return (EReference)addElementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getEditObject()
+  {
+    return editObjectEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getEditObject_Key()
+  {
+    return (EAttribute)editObjectEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEditObject_Value()
+  {
+    return (EReference)editObjectEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -333,9 +396,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EClass getToJSON()
+  public EAttribute getToString_Path()
   {
-    return toJSONEClass;
+    return (EAttribute)toStringEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -347,6 +410,17 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EClass getToCSV()
   {
     return toCSVEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getToCSV_Path()
+  {
+    return (EAttribute)toCSVEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -619,15 +693,22 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(loadfileEClass, LOADFILE__COMMANDS);
 
     commandEClass = createEClass(COMMAND);
-    createEAttribute(commandEClass, COMMAND__PATH);
 
     readEClass = createEClass(READ);
+    createEAttribute(readEClass, READ__PATH);
+
+    addElementEClass = createEClass(ADD_ELEMENT);
+    createEReference(addElementEClass, ADD_ELEMENT__ELEMENT);
+
+    editObjectEClass = createEClass(EDIT_OBJECT);
+    createEAttribute(editObjectEClass, EDIT_OBJECT__KEY);
+    createEReference(editObjectEClass, EDIT_OBJECT__VALUE);
 
     toStringEClass = createEClass(TO_STRING);
-
-    toJSONEClass = createEClass(TO_JSON);
+    createEAttribute(toStringEClass, TO_STRING__PATH);
 
     toCSVEClass = createEClass(TO_CSV);
+    createEAttribute(toCSVEClass, TO_CSV__PATH);
 
     expressionEClass = createEClass(EXPRESSION);
 
@@ -692,8 +773,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     // Add supertypes to classes
     readEClass.getESuperTypes().add(this.getCommand());
+    addElementEClass.getESuperTypes().add(this.getCommand());
+    editObjectEClass.getESuperTypes().add(this.getCommand());
     toStringEClass.getESuperTypes().add(this.getCommand());
-    toJSONEClass.getESuperTypes().add(this.getCommand());
     toCSVEClass.getESuperTypes().add(this.getCommand());
     entityEClass.getESuperTypes().add(this.getExpression());
     valueEClass.getESuperTypes().add(this.getExpression());
@@ -714,15 +796,22 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getLoadfile_Commands(), this.getCommand(), null, "commands", null, 0, -1, Loadfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCommand_Path(), ecorePackage.getEString(), "path", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(readEClass, Read.class, "Read", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRead_Path(), ecorePackage.getEString(), "path", null, 0, 1, Read.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(addElementEClass, AddElement.class, "AddElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAddElement_Element(), this.getElement(), null, "element", null, 0, 1, AddElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(editObjectEClass, EditObject.class, "EditObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEditObject_Key(), ecorePackage.getEString(), "key", null, 0, 1, EditObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEditObject_Value(), this.getExpression(), null, "value", null, 0, 1, EditObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(toStringEClass, ToString.class, "ToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(toJSONEClass, ToJSON.class, "ToJSON", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getToString_Path(), ecorePackage.getEString(), "path", null, 0, 1, ToString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(toCSVEClass, ToCSV.class, "ToCSV", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getToCSV_Path(), ecorePackage.getEString(), "path", null, 0, 1, ToCSV.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

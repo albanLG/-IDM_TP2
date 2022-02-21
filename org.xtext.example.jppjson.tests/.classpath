@@ -30,5 +30,6 @@
 	<classpathentry kind="lib" path="/Users/marc/Downloads/jackson-annotations-2.13.0.jar"/>
 	<classpathentry kind="lib" path="/Users/marc/Downloads/jackson-core-2.13.0.jar"/>
 	<classpathentry kind="lib" path="/Users/marc/Downloads/jackson-databind-2.13.0.jar"/>
+	<classpathentry kind="lib" path="/Users/marc/Downloads/jackson-dataformat-csv-2.13.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

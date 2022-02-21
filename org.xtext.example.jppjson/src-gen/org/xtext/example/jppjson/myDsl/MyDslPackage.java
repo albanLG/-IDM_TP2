@@ -133,22 +133,13 @@ public interface MyDslPackage extends EPackage
   int COMMAND = 2;
 
   /**
-   * The feature id for the '<em><b>Path</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int COMMAND__PATH = 0;
-
-  /**
    * The number of structural features of the '<em>Command</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMMAND_FEATURE_COUNT = 1;
+  int COMMAND_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link org.xtext.example.jppjson.myDsl.impl.ReadImpl <em>Read</em>}' class.
@@ -167,7 +158,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int READ__PATH = COMMAND__PATH;
+  int READ__PATH = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Read</em>' class.
@@ -176,7 +167,72 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int READ_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 0;
+  int READ_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.jppjson.myDsl.impl.AddElementImpl <em>Add Element</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.jppjson.myDsl.impl.AddElementImpl
+   * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getAddElement()
+   * @generated
+   */
+  int ADD_ELEMENT = 4;
+
+  /**
+   * The feature id for the '<em><b>Element</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADD_ELEMENT__ELEMENT = COMMAND_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Add Element</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADD_ELEMENT_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.jppjson.myDsl.impl.EditObjectImpl <em>Edit Object</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.jppjson.myDsl.impl.EditObjectImpl
+   * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getEditObject()
+   * @generated
+   */
+  int EDIT_OBJECT = 5;
+
+  /**
+   * The feature id for the '<em><b>Key</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EDIT_OBJECT__KEY = COMMAND_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EDIT_OBJECT__VALUE = COMMAND_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Edit Object</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EDIT_OBJECT_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.jppjson.myDsl.impl.ToStringImpl <em>To String</em>}' class.
@@ -186,7 +242,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getToString()
    * @generated
    */
-  int TO_STRING = 4;
+  int TO_STRING = 6;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -195,7 +251,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TO_STRING__PATH = COMMAND__PATH;
+  int TO_STRING__PATH = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>To String</em>' class.
@@ -204,35 +260,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TO_STRING_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.jppjson.myDsl.impl.ToJSONImpl <em>To JSON</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.jppjson.myDsl.impl.ToJSONImpl
-   * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getToJSON()
-   * @generated
-   */
-  int TO_JSON = 5;
-
-  /**
-   * The feature id for the '<em><b>Path</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TO_JSON__PATH = COMMAND__PATH;
-
-  /**
-   * The number of structural features of the '<em>To JSON</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TO_JSON_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 0;
+  int TO_STRING_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.jppjson.myDsl.impl.ToCSVImpl <em>To CSV</em>}' class.
@@ -242,7 +270,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getToCSV()
    * @generated
    */
-  int TO_CSV = 6;
+  int TO_CSV = 7;
 
   /**
    * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -251,7 +279,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TO_CSV__PATH = COMMAND__PATH;
+  int TO_CSV__PATH = COMMAND_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>To CSV</em>' class.
@@ -260,7 +288,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TO_CSV_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 0;
+  int TO_CSV_FEATURE_COUNT = COMMAND_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.jppjson.myDsl.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -270,7 +298,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 7;
+  int EXPRESSION = 8;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -289,7 +317,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 8;
+  int ENTITY = 9;
 
   /**
    * The number of structural features of the '<em>Entity</em>' class.
@@ -308,7 +336,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getElement()
    * @generated
    */
-  int ELEMENT = 9;
+  int ELEMENT = 10;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -345,7 +373,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getValue()
    * @generated
    */
-  int VALUE = 10;
+  int VALUE = 11;
 
   /**
    * The number of structural features of the '<em>Value</em>' class.
@@ -364,7 +392,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJsonString()
    * @generated
    */
-  int JSON_STRING = 11;
+  int JSON_STRING = 12;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -392,7 +420,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJsonBoolean()
    * @generated
    */
-  int JSON_BOOLEAN = 12;
+  int JSON_BOOLEAN = 13;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -420,7 +448,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJsonEmpty()
    * @generated
    */
-  int JSON_EMPTY = 13;
+  int JSON_EMPTY = 14;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -448,7 +476,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJsonInteger()
    * @generated
    */
-  int JSON_INTEGER = 14;
+  int JSON_INTEGER = 15;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -476,7 +504,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJObject()
    * @generated
    */
-  int JOBJECT = 15;
+  int JOBJECT = 16;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' containment reference list.
@@ -504,7 +532,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getJArray()
    * @generated
    */
-  int JARRAY = 16;
+  int JARRAY = 17;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference list.
@@ -532,7 +560,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getBinExp()
    * @generated
    */
-  int BIN_EXP = 17;
+  int BIN_EXP = 18;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -626,17 +654,6 @@ public interface MyDslPackage extends EPackage
   EClass getCommand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.jppjson.myDsl.Command#getPath <em>Path</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Path</em>'.
-   * @see org.xtext.example.jppjson.myDsl.Command#getPath()
-   * @see #getCommand()
-   * @generated
-   */
-  EAttribute getCommand_Path();
-
-  /**
    * Returns the meta object for class '{@link org.xtext.example.jppjson.myDsl.Read <em>Read</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -645,6 +662,70 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getRead();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.jppjson.myDsl.Read#getPath <em>Path</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Path</em>'.
+   * @see org.xtext.example.jppjson.myDsl.Read#getPath()
+   * @see #getRead()
+   * @generated
+   */
+  EAttribute getRead_Path();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.jppjson.myDsl.AddElement <em>Add Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Add Element</em>'.
+   * @see org.xtext.example.jppjson.myDsl.AddElement
+   * @generated
+   */
+  EClass getAddElement();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.jppjson.myDsl.AddElement#getElement <em>Element</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Element</em>'.
+   * @see org.xtext.example.jppjson.myDsl.AddElement#getElement()
+   * @see #getAddElement()
+   * @generated
+   */
+  EReference getAddElement_Element();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.jppjson.myDsl.EditObject <em>Edit Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Edit Object</em>'.
+   * @see org.xtext.example.jppjson.myDsl.EditObject
+   * @generated
+   */
+  EClass getEditObject();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.jppjson.myDsl.EditObject#getKey <em>Key</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see org.xtext.example.jppjson.myDsl.EditObject#getKey()
+   * @see #getEditObject()
+   * @generated
+   */
+  EAttribute getEditObject_Key();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.jppjson.myDsl.EditObject#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see org.xtext.example.jppjson.myDsl.EditObject#getValue()
+   * @see #getEditObject()
+   * @generated
+   */
+  EReference getEditObject_Value();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.jppjson.myDsl.ToString <em>To String</em>}'.
@@ -657,14 +738,15 @@ public interface MyDslPackage extends EPackage
   EClass getToString();
 
   /**
-   * Returns the meta object for class '{@link org.xtext.example.jppjson.myDsl.ToJSON <em>To JSON</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.jppjson.myDsl.ToString#getPath <em>Path</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>To JSON</em>'.
-   * @see org.xtext.example.jppjson.myDsl.ToJSON
+   * @return the meta object for the attribute '<em>Path</em>'.
+   * @see org.xtext.example.jppjson.myDsl.ToString#getPath()
+   * @see #getToString()
    * @generated
    */
-  EClass getToJSON();
+  EAttribute getToString_Path();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.jppjson.myDsl.ToCSV <em>To CSV</em>}'.
@@ -675,6 +757,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getToCSV();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.jppjson.myDsl.ToCSV#getPath <em>Path</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Path</em>'.
+   * @see org.xtext.example.jppjson.myDsl.ToCSV#getPath()
+   * @see #getToCSV()
+   * @generated
+   */
+  EAttribute getToCSV_Path();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.jppjson.myDsl.Expression <em>Expression</em>}'.
@@ -974,14 +1067,6 @@ public interface MyDslPackage extends EPackage
     EClass COMMAND = eINSTANCE.getCommand();
 
     /**
-     * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COMMAND__PATH = eINSTANCE.getCommand_Path();
-
-    /**
      * The meta object literal for the '{@link org.xtext.example.jppjson.myDsl.impl.ReadImpl <em>Read</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -990,6 +1075,58 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass READ = eINSTANCE.getRead();
+
+    /**
+     * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute READ__PATH = eINSTANCE.getRead_Path();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.jppjson.myDsl.impl.AddElementImpl <em>Add Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.jppjson.myDsl.impl.AddElementImpl
+     * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getAddElement()
+     * @generated
+     */
+    EClass ADD_ELEMENT = eINSTANCE.getAddElement();
+
+    /**
+     * The meta object literal for the '<em><b>Element</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ADD_ELEMENT__ELEMENT = eINSTANCE.getAddElement_Element();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.jppjson.myDsl.impl.EditObjectImpl <em>Edit Object</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.jppjson.myDsl.impl.EditObjectImpl
+     * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getEditObject()
+     * @generated
+     */
+    EClass EDIT_OBJECT = eINSTANCE.getEditObject();
+
+    /**
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EDIT_OBJECT__KEY = eINSTANCE.getEditObject_Key();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EDIT_OBJECT__VALUE = eINSTANCE.getEditObject_Value();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.jppjson.myDsl.impl.ToStringImpl <em>To String</em>}' class.
@@ -1002,14 +1139,12 @@ public interface MyDslPackage extends EPackage
     EClass TO_STRING = eINSTANCE.getToString();
 
     /**
-     * The meta object literal for the '{@link org.xtext.example.jppjson.myDsl.impl.ToJSONImpl <em>To JSON</em>}' class.
+     * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.xtext.example.jppjson.myDsl.impl.ToJSONImpl
-     * @see org.xtext.example.jppjson.myDsl.impl.MyDslPackageImpl#getToJSON()
      * @generated
      */
-    EClass TO_JSON = eINSTANCE.getToJSON();
+    EAttribute TO_STRING__PATH = eINSTANCE.getToString_Path();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.jppjson.myDsl.impl.ToCSVImpl <em>To CSV</em>}' class.
@@ -1020,6 +1155,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass TO_CSV = eINSTANCE.getToCSV();
+
+    /**
+     * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TO_CSV__PATH = eINSTANCE.getToCSV_Path();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.jppjson.myDsl.impl.ExpressionImpl <em>Expression</em>}' class.

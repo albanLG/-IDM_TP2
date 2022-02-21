@@ -7,21 +7,24 @@ Programme:
 
 
 Loadfile : 
-	'Load('path=STRING')' '{' commands+=Command*'}' |
-	'Write()' '{' commands+=Command* '}';
-
+	'Load('path=STRING')' '{' commands+=Command*'}'
+	
+	;
 Command :
-	 (  Read | ToString | ToJSON | ToCSV) ';';
+	 (  Read |EditObject|AddElement| ToString | ToCSV) ';';
 
 Read:
 	'Read('path=STRING')';
+	
+AddElement:
+	'AddElement('element=Element')'
+;
+EditObject:
+	'EditObject('key=STRING','value=Expression')'
+;
 
 ToString:
 	'ExportString('path=STRING')';
-
-ToJSON:
-	'ExportJson('path=STRING')'
-;
 
 ToCSV :
 	'ExportCSV('path=STRING')'

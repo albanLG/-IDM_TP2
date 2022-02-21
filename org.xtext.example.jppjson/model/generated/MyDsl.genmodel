@@ -13,13 +13,23 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Loadfile/path"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Loadfile/commands"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Command">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Command/path"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Command"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Read">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Read/path"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Read"/>
-    <genClasses ecoreClass="MyDsl.ecore#//ToString"/>
-    <genClasses ecoreClass="MyDsl.ecore#//ToJSON"/>
-    <genClasses ecoreClass="MyDsl.ecore#//ToCSV"/>
+    <genClasses ecoreClass="MyDsl.ecore#//AddElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AddElement/element"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//EditObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//EditObject/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//EditObject/value"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//ToString">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ToString/path"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//ToCSV">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ToCSV/path"/>
+    </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Expression"/>
     <genClasses ecoreClass="MyDsl.ecore#//Entity"/>
     <genClasses ecoreClass="MyDsl.ecore#//Element">

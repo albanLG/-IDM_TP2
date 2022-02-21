@@ -102,19 +102,27 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.ADD_ELEMENT:
+      {
+        AddElement addElement = (AddElement)theEObject;
+        T result = caseAddElement(addElement);
+        if (result == null) result = caseCommand(addElement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.EDIT_OBJECT:
+      {
+        EditObject editObject = (EditObject)theEObject;
+        T result = caseEditObject(editObject);
+        if (result == null) result = caseCommand(editObject);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.TO_STRING:
       {
         ToString toString = (ToString)theEObject;
         T result = caseToString(toString);
         if (result == null) result = caseCommand(toString);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.TO_JSON:
-      {
-        ToJSON toJSON = (ToJSON)theEObject;
-        T result = caseToJSON(toJSON);
-        if (result == null) result = caseCommand(toJSON);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -287,6 +295,38 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Add Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Add Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAddElement(AddElement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Edit Object</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Edit Object</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEditObject(EditObject object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>To String</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -298,22 +338,6 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseToString(ToString object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>To JSON</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>To JSON</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseToJSON(ToJSON object)
   {
     return null;
   }

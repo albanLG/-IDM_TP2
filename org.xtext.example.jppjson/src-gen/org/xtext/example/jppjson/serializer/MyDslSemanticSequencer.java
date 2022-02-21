@@ -14,7 +14,9 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
+import org.xtext.example.jppjson.myDsl.AddElement;
 import org.xtext.example.jppjson.myDsl.BinExp;
+import org.xtext.example.jppjson.myDsl.EditObject;
 import org.xtext.example.jppjson.myDsl.Element;
 import org.xtext.example.jppjson.myDsl.JArray;
 import org.xtext.example.jppjson.myDsl.JObject;
@@ -27,7 +29,6 @@ import org.xtext.example.jppjson.myDsl.MyDslPackage;
 import org.xtext.example.jppjson.myDsl.Programme;
 import org.xtext.example.jppjson.myDsl.Read;
 import org.xtext.example.jppjson.myDsl.ToCSV;
-import org.xtext.example.jppjson.myDsl.ToJSON;
 import org.xtext.example.jppjson.myDsl.ToString;
 import org.xtext.example.jppjson.services.MyDslGrammarAccess;
 
@@ -45,8 +46,14 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == MyDslPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case MyDslPackage.ADD_ELEMENT:
+				sequence_AddElement(context, (AddElement) semanticObject); 
+				return; 
 			case MyDslPackage.BIN_EXP:
 				sequence_BinExp(context, (BinExp) semanticObject); 
+				return; 
+			case MyDslPackage.EDIT_OBJECT:
+				sequence_EditObject(context, (EditObject) semanticObject); 
 				return; 
 			case MyDslPackage.ELEMENT:
 				sequence_Element(context, (Element) semanticObject); 
@@ -81,9 +88,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.TO_CSV:
 				sequence_ToCSV(context, (ToCSV) semanticObject); 
 				return; 
-			case MyDslPackage.TO_JSON:
-				sequence_ToJSON(context, (ToJSON) semanticObject); 
-				return; 
 			case MyDslPackage.TO_STRING:
 				sequence_ToString(context, (ToString) semanticObject); 
 				return; 
@@ -91,6 +95,25 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     Command returns AddElement
+	 *     AddElement returns AddElement
+	 *
+	 * Constraint:
+	 *     element=Element
+	 */
+	protected void sequence_AddElement(ISerializationContext context, AddElement semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.ADD_ELEMENT__ELEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.ADD_ELEMENT__ELEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAddElementAccess().getElementElementParserRuleCall_1_0(), semanticObject.getElement());
+		feeder.finish();
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -110,6 +133,28 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getBinExpAccess().getValSTRINGTerminalRuleCall_0_0(), semanticObject.getVal());
 		feeder.accept(grammarAccess.getBinExpAccess().getRvalSTRINGTerminalRuleCall_2_0(), semanticObject.getRval());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Command returns EditObject
+	 *     EditObject returns EditObject
+	 *
+	 * Constraint:
+	 *     (key=STRING value=Expression)
+	 */
+	protected void sequence_EditObject(ISerializationContext context, EditObject semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EDIT_OBJECT__KEY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EDIT_OBJECT__KEY));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EDIT_OBJECT__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EDIT_OBJECT__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEditObjectAccess().getKeySTRINGTerminalRuleCall_1_0(), semanticObject.getKey());
+		feeder.accept(grammarAccess.getEditObjectAccess().getValueExpressionParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -242,7 +287,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Loadfile returns Loadfile
 	 *
 	 * Constraint:
-	 *     ((path=STRING commands+=Command*) | commands+=Command+)
+	 *     (path=STRING commands+=Command*)
 	 */
 	protected void sequence_Loadfile(ISerializationContext context, Loadfile semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -271,8 +316,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Read(ISerializationContext context, Read semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.COMMAND__PATH) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.COMMAND__PATH));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.READ__PATH) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.READ__PATH));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getReadAccess().getPathSTRINGTerminalRuleCall_1_0(), semanticObject.getPath());
@@ -290,30 +335,11 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_ToCSV(ISerializationContext context, ToCSV semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.COMMAND__PATH) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.COMMAND__PATH));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.TO_CSV__PATH) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.TO_CSV__PATH));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getToCSVAccess().getPathSTRINGTerminalRuleCall_1_0(), semanticObject.getPath());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Command returns ToJSON
-	 *     ToJSON returns ToJSON
-	 *
-	 * Constraint:
-	 *     path=STRING
-	 */
-	protected void sequence_ToJSON(ISerializationContext context, ToJSON semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.COMMAND__PATH) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.COMMAND__PATH));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getToJSONAccess().getPathSTRINGTerminalRuleCall_1_0(), semanticObject.getPath());
 		feeder.finish();
 	}
 	
@@ -328,8 +354,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_ToString(ISerializationContext context, ToString semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.COMMAND__PATH) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.COMMAND__PATH));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.TO_STRING__PATH) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.TO_STRING__PATH));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getToStringAccess().getPathSTRINGTerminalRuleCall_1_0(), semanticObject.getPath());

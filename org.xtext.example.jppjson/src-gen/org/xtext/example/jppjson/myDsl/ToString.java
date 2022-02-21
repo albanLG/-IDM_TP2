@@ -9,6 +9,12 @@ package org.xtext.example.jppjson.myDsl;
  * A representation of the model object '<em><b>To String</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * </p>
+ * <ul>
+ *   <li>{@link org.xtext.example.jppjson.myDsl.ToString#getPath <em>Path</em>}</li>
+ * </ul>
  *
  * @see org.xtext.example.jppjson.myDsl.MyDslPackage#getToString()
  * @model
@@ -16,4 +22,26 @@ package org.xtext.example.jppjson.myDsl;
  */
 public interface ToString extends Command
 {
+  /**
+   * Returns the value of the '<em><b>Path</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Path</em>' attribute.
+   * @see #setPath(String)
+   * @see org.xtext.example.jppjson.myDsl.MyDslPackage#getToString_Path()
+   * @model
+   * @generated
+   */
+  String getPath();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.jppjson.myDsl.ToString#getPath <em>Path</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Path</em>' attribute.
+   * @see #getPath()
+   * @generated
+   */
+  void setPath(String value);
+
 } // ToString
