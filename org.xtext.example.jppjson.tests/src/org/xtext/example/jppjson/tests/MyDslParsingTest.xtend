@@ -29,8 +29,8 @@ class MyDslParsingTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty,'''Unexpected errors: «errors.join(", ")»''')
 		
-		val JavaCompiler cmpJava = new JavaCompiler(result)
-		cmpJava.compileAndRun
+		val JavaCompilerXtend cmpJava = new JavaCompilerXtend(result)
+		cmpJava.run
 		
 	}
 }
