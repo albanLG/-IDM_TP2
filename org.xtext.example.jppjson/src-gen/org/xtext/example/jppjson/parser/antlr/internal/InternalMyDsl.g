@@ -43,7 +43,7 @@ import org.xtext.example.jppjson.services.MyDslGrammarAccess;
 
     @Override
     protected String getFirstRuleName() {
-    	return "Expression";
+    	return "Programme";
    	}
 
    	@Override
@@ -59,6 +59,390 @@ import org.xtext.example.jppjson.services.MyDslGrammarAccess;
         appendSkippedTokens();
     }
 }
+
+// Entry rule entryRuleProgramme
+entryRuleProgramme returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getProgrammeRule()); }
+	iv_ruleProgramme=ruleProgramme
+	{ $current=$iv_ruleProgramme.current; }
+	EOF;
+
+// Rule Programme
+ruleProgramme returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getProgrammeAccess().getLoadfilesLoadfileParserRuleCall_0());
+			}
+			lv_loadfiles_0_0=ruleLoadfile
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getProgrammeRule());
+				}
+				add(
+					$current,
+					"loadfiles",
+					lv_loadfiles_0_0,
+					"org.xtext.example.jppjson.MyDsl.Loadfile");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)*
+;
+
+// Entry rule entryRuleLoadfile
+entryRuleLoadfile returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLoadfileRule()); }
+	iv_ruleLoadfile=ruleLoadfile
+	{ $current=$iv_ruleLoadfile.current; }
+	EOF;
+
+// Rule Loadfile
+ruleLoadfile returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='Load('
+			{
+				newLeafNode(otherlv_0, grammarAccess.getLoadfileAccess().getLoadKeyword_0_0());
+			}
+			(
+				(
+					lv_path_1_0=RULE_STRING
+					{
+						newLeafNode(lv_path_1_0, grammarAccess.getLoadfileAccess().getPathSTRINGTerminalRuleCall_0_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getLoadfileRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"path",
+							lv_path_1_0,
+							"org.eclipse.xtext.common.Terminals.STRING");
+					}
+				)
+			)
+			otherlv_2=')'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getLoadfileAccess().getRightParenthesisKeyword_0_2());
+			}
+			otherlv_3='{'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getLoadfileAccess().getLeftCurlyBracketKeyword_0_3());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getLoadfileAccess().getCommandsCommandParserRuleCall_0_4_0());
+					}
+					lv_commands_4_0=ruleCommand
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getLoadfileRule());
+						}
+						add(
+							$current,
+							"commands",
+							lv_commands_4_0,
+							"org.xtext.example.jppjson.MyDsl.Command");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)*
+			otherlv_5='}'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getLoadfileAccess().getRightCurlyBracketKeyword_0_5());
+			}
+		)
+		    |
+		(
+			otherlv_6='Write()'
+			{
+				newLeafNode(otherlv_6, grammarAccess.getLoadfileAccess().getWriteKeyword_1_0());
+			}
+			otherlv_7='{'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getLoadfileAccess().getLeftCurlyBracketKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getLoadfileAccess().getCommandsCommandParserRuleCall_1_2_0());
+					}
+					lv_commands_8_0=ruleCommand
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getLoadfileRule());
+						}
+						add(
+							$current,
+							"commands",
+							lv_commands_8_0,
+							"org.xtext.example.jppjson.MyDsl.Command");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)*
+			otherlv_9='}'
+			{
+				newLeafNode(otherlv_9, grammarAccess.getLoadfileAccess().getRightCurlyBracketKeyword_1_3());
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleCommand
+entryRuleCommand returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getCommandRule()); }
+	iv_ruleCommand=ruleCommand
+	{ $current=$iv_ruleCommand.current; }
+	EOF;
+
+// Rule Command
+ruleCommand returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getCommandAccess().getReadParserRuleCall_0_0());
+			}
+			this_Read_0=ruleRead
+			{
+				$current = $this_Read_0.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			{
+				newCompositeNode(grammarAccess.getCommandAccess().getToStringParserRuleCall_0_1());
+			}
+			this_ToString_1=ruleToString
+			{
+				$current = $this_ToString_1.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			{
+				newCompositeNode(grammarAccess.getCommandAccess().getToJSONParserRuleCall_0_2());
+			}
+			this_ToJSON_2=ruleToJSON
+			{
+				$current = $this_ToJSON_2.current;
+				afterParserOrEnumRuleCall();
+			}
+			    |
+			{
+				newCompositeNode(grammarAccess.getCommandAccess().getToCSVParserRuleCall_0_3());
+			}
+			this_ToCSV_3=ruleToCSV
+			{
+				$current = $this_ToCSV_3.current;
+				afterParserOrEnumRuleCall();
+			}
+		)
+		otherlv_4=';'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getCommandAccess().getSemicolonKeyword_1());
+		}
+	)
+;
+
+// Entry rule entryRuleRead
+entryRuleRead returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReadRule()); }
+	iv_ruleRead=ruleRead
+	{ $current=$iv_ruleRead.current; }
+	EOF;
+
+// Rule Read
+ruleRead returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='Read('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getReadAccess().getReadKeyword_0());
+		}
+		(
+			(
+				lv_path_1_0=RULE_STRING
+				{
+					newLeafNode(lv_path_1_0, grammarAccess.getReadAccess().getPathSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getReadRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"path",
+						lv_path_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getReadAccess().getRightParenthesisKeyword_2());
+		}
+	)
+;
+
+// Entry rule entryRuleToString
+entryRuleToString returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getToStringRule()); }
+	iv_ruleToString=ruleToString
+	{ $current=$iv_ruleToString.current; }
+	EOF;
+
+// Rule ToString
+ruleToString returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='ExportString('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getToStringAccess().getExportStringKeyword_0());
+		}
+		(
+			(
+				lv_path_1_0=RULE_STRING
+				{
+					newLeafNode(lv_path_1_0, grammarAccess.getToStringAccess().getPathSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getToStringRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"path",
+						lv_path_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getToStringAccess().getRightParenthesisKeyword_2());
+		}
+	)
+;
+
+// Entry rule entryRuleToJSON
+entryRuleToJSON returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getToJSONRule()); }
+	iv_ruleToJSON=ruleToJSON
+	{ $current=$iv_ruleToJSON.current; }
+	EOF;
+
+// Rule ToJSON
+ruleToJSON returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='ExportJson('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getToJSONAccess().getExportJsonKeyword_0());
+		}
+		(
+			(
+				lv_path_1_0=RULE_STRING
+				{
+					newLeafNode(lv_path_1_0, grammarAccess.getToJSONAccess().getPathSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getToJSONRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"path",
+						lv_path_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getToJSONAccess().getRightParenthesisKeyword_2());
+		}
+	)
+;
+
+// Entry rule entryRuleToCSV
+entryRuleToCSV returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getToCSVRule()); }
+	iv_ruleToCSV=ruleToCSV
+	{ $current=$iv_ruleToCSV.current; }
+	EOF;
+
+// Rule ToCSV
+ruleToCSV returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='ExportCSV('
+		{
+			newLeafNode(otherlv_0, grammarAccess.getToCSVAccess().getExportCSVKeyword_0());
+		}
+		(
+			(
+				lv_path_1_0=RULE_STRING
+				{
+					newLeafNode(lv_path_1_0, grammarAccess.getToCSVAccess().getPathSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getToCSVRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"path",
+						lv_path_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_2=')'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getToCSVAccess().getRightParenthesisKeyword_2());
+		}
+	)
+;
 
 // Entry rule entryRuleExpression
 entryRuleExpression returns [EObject current=null]:

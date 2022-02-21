@@ -6,6 +6,20 @@
     complianceLevel="8.0" copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="MyDsl" basePackage="org.xtext.example.jppjson" disposableProviderFactory="true"
       fileExtensions="jpp" ecorePackage="MyDsl.ecore#/">
+    <genClasses ecoreClass="MyDsl.ecore#//Programme">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Programme/loadfiles"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Loadfile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Loadfile/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Loadfile/commands"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Command">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Command/path"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Read"/>
+    <genClasses ecoreClass="MyDsl.ecore#//ToString"/>
+    <genClasses ecoreClass="MyDsl.ecore#//ToJSON"/>
+    <genClasses ecoreClass="MyDsl.ecore#//ToCSV"/>
     <genClasses ecoreClass="MyDsl.ecore#//Expression"/>
     <genClasses ecoreClass="MyDsl.ecore#//Entity"/>
     <genClasses ecoreClass="MyDsl.ecore#//Element">

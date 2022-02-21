@@ -1,30 +1,41 @@
 package org.xtext.example.jppjson.tests;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.xtext.example.jppjson.myDsl.Element;
 import org.xtext.example.jppjson.myDsl.Entity;
 import org.xtext.example.jppjson.myDsl.Expression;
+import org.xtext.example.jppjson.myDsl.JArray;
 import org.xtext.example.jppjson.myDsl.JObject;
 import org.xtext.example.jppjson.myDsl.JsonString;
+import org.xtext.example.jppjson.myDsl.Programme;
 import org.xtext.example.jppjson.myDsl.Value;
 
 import com.google.common.io.Files;
 
 public class JavaCompiler {
+	
 	private Expression _expression;
+	private Programme _programme;
 	private String key;
 	private String value;
+	private Map<String,String> myMap = new HashMap<String,String>();
+
 	
-	JavaCompiler(Expression expression){
-		this._expression = expression;
+	JavaCompiler(Programme programme){
+		this._programme = programme;
 	}
+	
+	
 	
 	public void compileAndRun() throws IOException {	 
 		
@@ -40,7 +51,6 @@ public class JavaCompiler {
 		
 		String JAVA_OUTPUT = "jpp.java";
 		
-		
 		Files.write(javaCode.getBytes(), new File(JAVA_OUTPUT));
 		
 		Process p = Runtime.getRuntime().exec("javac -d . " + JAVA_OUTPUT);
@@ -49,7 +59,7 @@ public class JavaCompiler {
 		
 
 		
-		 BufferedReader stdInput = new BufferedReader(new 
+		BufferedReader stdInput = new BufferedReader(new 
 		         InputStreamReader(testp.getInputStream()));
 		
 		    // error
@@ -67,37 +77,51 @@ public class JavaCompiler {
 		    }
 	}
 	
-	public void doExpr(Expression exp) {
+	public String doExpr(Expression exp) {
 		if (exp instanceof Value) {	
 			Value v = (Value) exp;
-			doValue(v);
+			return doValue(v);
 		}
 		else if (exp instanceof Entity) {
 			Entity e = (Entity) exp;
-			doEntity(e);
+			return doEntity(e);
 		}
 		else {
 			//BinExp
 		}
+		return "";
 	}
 	
-	public void doValue(Value v) {
+	public String doValue(Value v) {
 		if (v instanceof JsonString) {
-			this.value = ((JsonString) v).getVal();
+			return ((JsonString) v).getVal();
 		}
+		return "";
 	}
 	
-	public void doEntity(Entity e) {
+	public String doEntity(Entity e) {
 		if(e instanceof JObject) {
 			EList<Element> elements = ((JObject) e).getElement();
-			Element ele = elements.get(0);
-			key = ele.getKey();
-			Expression exp2 = ele.getValue();
-			doExpr(exp2);
-		}
-		else {//e instanceof JArray
+			for(int i = 0;i<elements.size();i++) {
+				Element ele = elements.get(i);
+				key = ele.getKey();
+				Expression exp2 = ele.getValue();
+				String expr = doExpr(exp2);
+				this.myMap.put(key, expr);
+			}
 			
 		}
+		else if(e instanceof JArray){
+			EList<Expression> expressions = ((JArray) e).getExpression();
+			for(int i = 0;i<expressions.size();i++) {
+				Expression exe = expressions.get(i);
+				String expr = doExpr(exe);
+			}
+
+			//e instanceof JArray
+			
+		}
+		return "";
 	}
 
 }

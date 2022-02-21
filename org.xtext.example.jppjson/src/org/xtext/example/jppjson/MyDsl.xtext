@@ -2,6 +2,30 @@ grammar org.xtext.example.jppjson.MyDsl with org.eclipse.xtext.common.Terminals
 
 generate myDsl "http://www.xtext.org/example/jppjson/MyDsl"
 
+Programme:
+	loadfiles+=Loadfile*;
+
+
+Loadfile : 
+	'Load('path=STRING')' '{' commands+=Command*'}' |
+	'Write()' '{' commands+=Command* '}';
+
+Command :
+	 (  Read | ToString | ToJSON | ToCSV) ';';
+
+Read:
+	'Read('path=STRING')';
+
+ToString:
+	'ExportString('path=STRING')';
+
+ToJSON:
+	'ExportJson('path=STRING')'
+;
+
+ToCSV :
+	'ExportCSV('path=STRING')'
+;
 
 Expression:
 	BinExp | Value | Entity;

@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.jppjson.myDsl.BinExp;
+import org.xtext.example.jppjson.myDsl.Command;
 import org.xtext.example.jppjson.myDsl.Element;
 import org.xtext.example.jppjson.myDsl.Entity;
 import org.xtext.example.jppjson.myDsl.Expression;
@@ -20,8 +21,14 @@ import org.xtext.example.jppjson.myDsl.JsonBoolean;
 import org.xtext.example.jppjson.myDsl.JsonEmpty;
 import org.xtext.example.jppjson.myDsl.JsonInteger;
 import org.xtext.example.jppjson.myDsl.JsonString;
+import org.xtext.example.jppjson.myDsl.Loadfile;
 import org.xtext.example.jppjson.myDsl.MyDslFactory;
 import org.xtext.example.jppjson.myDsl.MyDslPackage;
+import org.xtext.example.jppjson.myDsl.Programme;
+import org.xtext.example.jppjson.myDsl.Read;
+import org.xtext.example.jppjson.myDsl.ToCSV;
+import org.xtext.example.jppjson.myDsl.ToJSON;
+import org.xtext.example.jppjson.myDsl.ToString;
 import org.xtext.example.jppjson.myDsl.Value;
 
 /**
@@ -32,6 +39,55 @@ import org.xtext.example.jppjson.myDsl.Value;
  */
 public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 {
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass programmeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass loadfileEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass commandEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass readEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass toStringEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass toJSONEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass toCSVEClass = null;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -170,6 +226,127 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(MyDslPackage.eNS_URI, theMyDslPackage);
     return theMyDslPackage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getProgramme()
+  {
+    return programmeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getProgramme_Loadfiles()
+  {
+    return (EReference)programmeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLoadfile()
+  {
+    return loadfileEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLoadfile_Path()
+  {
+    return (EAttribute)loadfileEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLoadfile_Commands()
+  {
+    return (EReference)loadfileEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCommand()
+  {
+    return commandEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCommand_Path()
+  {
+    return (EAttribute)commandEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRead()
+  {
+    return readEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getToString()
+  {
+    return toStringEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getToJSON()
+  {
+    return toJSONEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getToCSV()
+  {
+    return toCSVEClass;
   }
 
   /**
@@ -434,6 +611,24 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     isCreated = true;
 
     // Create classes and their features
+    programmeEClass = createEClass(PROGRAMME);
+    createEReference(programmeEClass, PROGRAMME__LOADFILES);
+
+    loadfileEClass = createEClass(LOADFILE);
+    createEAttribute(loadfileEClass, LOADFILE__PATH);
+    createEReference(loadfileEClass, LOADFILE__COMMANDS);
+
+    commandEClass = createEClass(COMMAND);
+    createEAttribute(commandEClass, COMMAND__PATH);
+
+    readEClass = createEClass(READ);
+
+    toStringEClass = createEClass(TO_STRING);
+
+    toJSONEClass = createEClass(TO_JSON);
+
+    toCSVEClass = createEClass(TO_CSV);
+
     expressionEClass = createEClass(EXPRESSION);
 
     entityEClass = createEClass(ENTITY);
@@ -496,6 +691,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    readEClass.getESuperTypes().add(this.getCommand());
+    toStringEClass.getESuperTypes().add(this.getCommand());
+    toJSONEClass.getESuperTypes().add(this.getCommand());
+    toCSVEClass.getESuperTypes().add(this.getCommand());
     entityEClass.getESuperTypes().add(this.getExpression());
     valueEClass.getESuperTypes().add(this.getExpression());
     jsonStringEClass.getESuperTypes().add(this.getValue());
@@ -507,6 +706,24 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     binExpEClass.getESuperTypes().add(this.getExpression());
 
     // Initialize classes and features; add operations and parameters
+    initEClass(programmeEClass, Programme.class, "Programme", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getProgramme_Loadfiles(), this.getLoadfile(), null, "loadfiles", null, 0, -1, Programme.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(loadfileEClass, Loadfile.class, "Loadfile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLoadfile_Path(), ecorePackage.getEString(), "path", null, 0, 1, Loadfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoadfile_Commands(), this.getCommand(), null, "commands", null, 0, -1, Loadfile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCommand_Path(), ecorePackage.getEString(), "path", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(readEClass, Read.class, "Read", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(toStringEClass, ToString.class, "ToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(toJSONEClass, ToJSON.class, "ToJSON", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(toCSVEClass, ToCSV.class, "ToCSV", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -31,10 +31,19 @@ public class MyDslParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MyDslGrammarAccess grammarAccess) {
+			builder.put(grammarAccess.getLoadfileAccess().getAlternatives(), "rule__Loadfile__Alternatives");
+			builder.put(grammarAccess.getCommandAccess().getAlternatives_0(), "rule__Command__Alternatives_0");
 			builder.put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
 			builder.put(grammarAccess.getEntityAccess().getAlternatives(), "rule__Entity__Alternatives");
 			builder.put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
 			builder.put(grammarAccess.getJsonBooleanAccess().getValAlternatives_0(), "rule__JsonBoolean__ValAlternatives_0");
+			builder.put(grammarAccess.getLoadfileAccess().getGroup_0(), "rule__Loadfile__Group_0__0");
+			builder.put(grammarAccess.getLoadfileAccess().getGroup_1(), "rule__Loadfile__Group_1__0");
+			builder.put(grammarAccess.getCommandAccess().getGroup(), "rule__Command__Group__0");
+			builder.put(grammarAccess.getReadAccess().getGroup(), "rule__Read__Group__0");
+			builder.put(grammarAccess.getToStringAccess().getGroup(), "rule__ToString__Group__0");
+			builder.put(grammarAccess.getToJSONAccess().getGroup(), "rule__ToJSON__Group__0");
+			builder.put(grammarAccess.getToCSVAccess().getGroup(), "rule__ToCSV__Group__0");
 			builder.put(grammarAccess.getElementAccess().getGroup(), "rule__Element__Group__0");
 			builder.put(grammarAccess.getJObjectAccess().getGroup(), "rule__JObject__Group__0");
 			builder.put(grammarAccess.getJObjectAccess().getGroup_1(), "rule__JObject__Group_1__0");
@@ -43,6 +52,14 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getJArrayAccess().getGroup_1(), "rule__JArray__Group_1__0");
 			builder.put(grammarAccess.getJArrayAccess().getGroup_1_1(), "rule__JArray__Group_1_1__0");
 			builder.put(grammarAccess.getBinExpAccess().getGroup(), "rule__BinExp__Group__0");
+			builder.put(grammarAccess.getProgrammeAccess().getLoadfilesAssignment(), "rule__Programme__LoadfilesAssignment");
+			builder.put(grammarAccess.getLoadfileAccess().getPathAssignment_0_1(), "rule__Loadfile__PathAssignment_0_1");
+			builder.put(grammarAccess.getLoadfileAccess().getCommandsAssignment_0_4(), "rule__Loadfile__CommandsAssignment_0_4");
+			builder.put(grammarAccess.getLoadfileAccess().getCommandsAssignment_1_2(), "rule__Loadfile__CommandsAssignment_1_2");
+			builder.put(grammarAccess.getReadAccess().getPathAssignment_1(), "rule__Read__PathAssignment_1");
+			builder.put(grammarAccess.getToStringAccess().getPathAssignment_1(), "rule__ToString__PathAssignment_1");
+			builder.put(grammarAccess.getToJSONAccess().getPathAssignment_1(), "rule__ToJSON__PathAssignment_1");
+			builder.put(grammarAccess.getToCSVAccess().getPathAssignment_1(), "rule__ToCSV__PathAssignment_1");
 			builder.put(grammarAccess.getElementAccess().getKeyAssignment_0(), "rule__Element__KeyAssignment_0");
 			builder.put(grammarAccess.getElementAccess().getValueAssignment_2(), "rule__Element__ValueAssignment_2");
 			builder.put(grammarAccess.getJsonStringAccess().getValAssignment(), "rule__JsonString__ValAssignment");

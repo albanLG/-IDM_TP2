@@ -76,6 +76,41 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
     new MyDslSwitch<Adapter>()
     {
       @Override
+      public Adapter caseProgramme(Programme object)
+      {
+        return createProgrammeAdapter();
+      }
+      @Override
+      public Adapter caseLoadfile(Loadfile object)
+      {
+        return createLoadfileAdapter();
+      }
+      @Override
+      public Adapter caseCommand(Command object)
+      {
+        return createCommandAdapter();
+      }
+      @Override
+      public Adapter caseRead(Read object)
+      {
+        return createReadAdapter();
+      }
+      @Override
+      public Adapter caseToString(ToString object)
+      {
+        return createToStringAdapter();
+      }
+      @Override
+      public Adapter caseToJSON(ToJSON object)
+      {
+        return createToJSONAdapter();
+      }
+      @Override
+      public Adapter caseToCSV(ToCSV object)
+      {
+        return createToCSVAdapter();
+      }
+      @Override
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
@@ -151,6 +186,111 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
     return modelSwitch.doSwitch((EObject)target);
   }
 
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.Programme <em>Programme</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.jppjson.myDsl.Programme
+   * @generated
+   */
+  public Adapter createProgrammeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.Loadfile <em>Loadfile</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.jppjson.myDsl.Loadfile
+   * @generated
+   */
+  public Adapter createLoadfileAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.Command <em>Command</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.jppjson.myDsl.Command
+   * @generated
+   */
+  public Adapter createCommandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.Read <em>Read</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.jppjson.myDsl.Read
+   * @generated
+   */
+  public Adapter createReadAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.ToString <em>To String</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.jppjson.myDsl.ToString
+   * @generated
+   */
+  public Adapter createToStringAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.ToJSON <em>To JSON</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.jppjson.myDsl.ToJSON
+   * @generated
+   */
+  public Adapter createToJSONAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.ToCSV <em>To CSV</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.jppjson.myDsl.ToCSV
+   * @generated
+   */
+  public Adapter createToCSVAdapter()
+  {
+    return null;
+  }
 
   /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.Expression <em>Expression</em>}'.

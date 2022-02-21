@@ -24,6 +24,69 @@ public interface MyDslFactory extends EFactory
   MyDslFactory eINSTANCE = org.xtext.example.jppjson.myDsl.impl.MyDslFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Programme</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Programme</em>'.
+   * @generated
+   */
+  Programme createProgramme();
+
+  /**
+   * Returns a new object of class '<em>Loadfile</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Loadfile</em>'.
+   * @generated
+   */
+  Loadfile createLoadfile();
+
+  /**
+   * Returns a new object of class '<em>Command</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Command</em>'.
+   * @generated
+   */
+  Command createCommand();
+
+  /**
+   * Returns a new object of class '<em>Read</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Read</em>'.
+   * @generated
+   */
+  Read createRead();
+
+  /**
+   * Returns a new object of class '<em>To String</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>To String</em>'.
+   * @generated
+   */
+  ToString createToString();
+
+  /**
+   * Returns a new object of class '<em>To JSON</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>To JSON</em>'.
+   * @generated
+   */
+  ToJSON createToJSON();
+
+  /**
+   * Returns a new object of class '<em>To CSV</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>To CSV</em>'.
+   * @generated
+   */
+  ToCSV createToCSV();
+
+  /**
    * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

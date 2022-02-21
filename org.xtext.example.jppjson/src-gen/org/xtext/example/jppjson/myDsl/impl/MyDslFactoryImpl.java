@@ -65,6 +65,13 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     switch (eClass.getClassifierID())
     {
+      case MyDslPackage.PROGRAMME: return createProgramme();
+      case MyDslPackage.LOADFILE: return createLoadfile();
+      case MyDslPackage.COMMAND: return createCommand();
+      case MyDslPackage.READ: return createRead();
+      case MyDslPackage.TO_STRING: return createToString();
+      case MyDslPackage.TO_JSON: return createToJSON();
+      case MyDslPackage.TO_CSV: return createToCSV();
       case MyDslPackage.EXPRESSION: return createExpression();
       case MyDslPackage.ENTITY: return createEntity();
       case MyDslPackage.ELEMENT: return createElement();
@@ -79,6 +86,90 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Programme createProgramme()
+  {
+    ProgrammeImpl programme = new ProgrammeImpl();
+    return programme;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Loadfile createLoadfile()
+  {
+    LoadfileImpl loadfile = new LoadfileImpl();
+    return loadfile;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Command createCommand()
+  {
+    CommandImpl command = new CommandImpl();
+    return command;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Read createRead()
+  {
+    ReadImpl read = new ReadImpl();
+    return read;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ToString createToString()
+  {
+    ToStringImpl toString = new ToStringImpl();
+    return toString;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ToJSON createToJSON()
+  {
+    ToJSONImpl toJSON = new ToJSONImpl();
+    return toJSON;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ToCSV createToCSV()
+  {
+    ToCSVImpl toCSV = new ToCSVImpl();
+    return toCSV;
   }
 
   /**
