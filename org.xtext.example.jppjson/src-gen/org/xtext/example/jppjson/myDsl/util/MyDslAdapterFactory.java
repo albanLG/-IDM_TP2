@@ -91,11 +91,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createCommandAdapter();
       }
       @Override
-      public Adapter caseRead(Read object)
-      {
-        return createReadAdapter();
-      }
-      @Override
       public Adapter caseAddElement(AddElement object)
       {
         return createAddElementAdapter();
@@ -106,9 +101,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createRemoveElementAdapter();
       }
       @Override
-      public Adapter caseEditObject(EditObject object)
+      public Adapter caseEditElement(EditElement object)
       {
-        return createEditObjectAdapter();
+        return createEditElementAdapter();
       }
       @Override
       public Adapter caseToString(ToString object)
@@ -243,21 +238,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.Read <em>Read</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.jppjson.myDsl.Read
-   * @generated
-   */
-  public Adapter createReadAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.AddElement <em>Add Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -288,16 +268,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.EditObject <em>Edit Object</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.jppjson.myDsl.EditElement <em>Edit Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.jppjson.myDsl.EditObject
+   * @see org.xtext.example.jppjson.myDsl.EditElement
    * @generated
    */
-  public Adapter createEditObjectAdapter()
+  public Adapter createEditElementAdapter()
   {
     return null;
   }

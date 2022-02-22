@@ -11,25 +11,25 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.xtext.example.jppjson.myDsl.EditObject;
+import org.xtext.example.jppjson.myDsl.EditElement;
 import org.xtext.example.jppjson.myDsl.Expression;
 import org.xtext.example.jppjson.myDsl.MyDslPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Edit Object</b></em>'.
+ * An implementation of the model object '<em><b>Edit Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.jppjson.myDsl.impl.EditObjectImpl#getKey <em>Key</em>}</li>
- *   <li>{@link org.xtext.example.jppjson.myDsl.impl.EditObjectImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.xtext.example.jppjson.myDsl.impl.EditElementImpl#getKey <em>Key</em>}</li>
+ *   <li>{@link org.xtext.example.jppjson.myDsl.impl.EditElementImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EditObjectImpl extends CommandImpl implements EditObject
+public class EditElementImpl extends CommandImpl implements EditElement
 {
   /**
    * The default value of the '{@link #getKey() <em>Key</em>}' attribute.
@@ -66,7 +66,7 @@ public class EditObjectImpl extends CommandImpl implements EditObject
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EditObjectImpl()
+  protected EditElementImpl()
   {
     super();
   }
@@ -79,7 +79,7 @@ public class EditObjectImpl extends CommandImpl implements EditObject
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.EDIT_OBJECT;
+    return MyDslPackage.Literals.EDIT_ELEMENT;
   }
 
   /**
@@ -104,7 +104,7 @@ public class EditObjectImpl extends CommandImpl implements EditObject
     String oldKey = key;
     key = newKey;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.EDIT_OBJECT__KEY, oldKey, key));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.EDIT_ELEMENT__KEY, oldKey, key));
   }
 
   /**
@@ -129,7 +129,7 @@ public class EditObjectImpl extends CommandImpl implements EditObject
     value = newValue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.EDIT_OBJECT__VALUE, oldValue, newValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.EDIT_ELEMENT__VALUE, oldValue, newValue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -147,14 +147,14 @@ public class EditObjectImpl extends CommandImpl implements EditObject
     {
       NotificationChain msgs = null;
       if (value != null)
-        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.EDIT_OBJECT__VALUE, null, msgs);
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.EDIT_ELEMENT__VALUE, null, msgs);
       if (newValue != null)
-        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.EDIT_OBJECT__VALUE, null, msgs);
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.EDIT_ELEMENT__VALUE, null, msgs);
       msgs = basicSetValue(newValue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.EDIT_OBJECT__VALUE, newValue, newValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.EDIT_ELEMENT__VALUE, newValue, newValue));
   }
 
   /**
@@ -167,7 +167,7 @@ public class EditObjectImpl extends CommandImpl implements EditObject
   {
     switch (featureID)
     {
-      case MyDslPackage.EDIT_OBJECT__VALUE:
+      case MyDslPackage.EDIT_ELEMENT__VALUE:
         return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -183,9 +183,9 @@ public class EditObjectImpl extends CommandImpl implements EditObject
   {
     switch (featureID)
     {
-      case MyDslPackage.EDIT_OBJECT__KEY:
+      case MyDslPackage.EDIT_ELEMENT__KEY:
         return getKey();
-      case MyDslPackage.EDIT_OBJECT__VALUE:
+      case MyDslPackage.EDIT_ELEMENT__VALUE:
         return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -201,10 +201,10 @@ public class EditObjectImpl extends CommandImpl implements EditObject
   {
     switch (featureID)
     {
-      case MyDslPackage.EDIT_OBJECT__KEY:
+      case MyDslPackage.EDIT_ELEMENT__KEY:
         setKey((String)newValue);
         return;
-      case MyDslPackage.EDIT_OBJECT__VALUE:
+      case MyDslPackage.EDIT_ELEMENT__VALUE:
         setValue((Expression)newValue);
         return;
     }
@@ -221,10 +221,10 @@ public class EditObjectImpl extends CommandImpl implements EditObject
   {
     switch (featureID)
     {
-      case MyDslPackage.EDIT_OBJECT__KEY:
+      case MyDslPackage.EDIT_ELEMENT__KEY:
         setKey(KEY_EDEFAULT);
         return;
-      case MyDslPackage.EDIT_OBJECT__VALUE:
+      case MyDslPackage.EDIT_ELEMENT__VALUE:
         setValue((Expression)null);
         return;
     }
@@ -241,9 +241,9 @@ public class EditObjectImpl extends CommandImpl implements EditObject
   {
     switch (featureID)
     {
-      case MyDslPackage.EDIT_OBJECT__KEY:
+      case MyDslPackage.EDIT_ELEMENT__KEY:
         return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-      case MyDslPackage.EDIT_OBJECT__VALUE:
+      case MyDslPackage.EDIT_ELEMENT__VALUE:
         return value != null;
     }
     return super.eIsSet(featureID);
@@ -266,4 +266,4 @@ public class EditObjectImpl extends CommandImpl implements EditObject
     return result.toString();
   }
 
-} //EditObjectImpl
+} //EditElementImpl

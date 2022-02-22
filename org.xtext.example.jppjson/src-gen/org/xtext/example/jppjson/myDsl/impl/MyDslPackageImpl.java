@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.xtext.example.jppjson.myDsl.AddElement;
 import org.xtext.example.jppjson.myDsl.BinExp;
 import org.xtext.example.jppjson.myDsl.Command;
-import org.xtext.example.jppjson.myDsl.EditObject;
+import org.xtext.example.jppjson.myDsl.EditElement;
 import org.xtext.example.jppjson.myDsl.Element;
 import org.xtext.example.jppjson.myDsl.Entity;
 import org.xtext.example.jppjson.myDsl.Expression;
@@ -27,7 +27,6 @@ import org.xtext.example.jppjson.myDsl.Loadfile;
 import org.xtext.example.jppjson.myDsl.MyDslFactory;
 import org.xtext.example.jppjson.myDsl.MyDslPackage;
 import org.xtext.example.jppjson.myDsl.Programme;
-import org.xtext.example.jppjson.myDsl.Read;
 import org.xtext.example.jppjson.myDsl.RemoveElement;
 import org.xtext.example.jppjson.myDsl.ToCSV;
 import org.xtext.example.jppjson.myDsl.ToString;
@@ -67,13 +66,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass readEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass addElementEClass = null;
 
   /**
@@ -88,7 +80,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass editObjectEClass = null;
+  private EClass editElementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -316,28 +308,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EClass getRead()
-  {
-    return readEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getRead_Path()
-  {
-    return (EAttribute)readEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getAddElement()
   {
     return addElementEClass;
@@ -382,9 +352,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EClass getEditObject()
+  public EClass getEditElement()
   {
-    return editObjectEClass;
+    return editElementEClass;
   }
 
   /**
@@ -393,9 +363,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EAttribute getEditObject_Key()
+  public EAttribute getEditElement_Key()
   {
-    return (EAttribute)editObjectEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)editElementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -404,9 +374,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   @Override
-  public EReference getEditObject_Value()
+  public EReference getEditElement_Value()
   {
-    return (EReference)editObjectEClass.getEStructuralFeatures().get(1);
+    return (EReference)editElementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -724,18 +694,15 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     commandEClass = createEClass(COMMAND);
 
-    readEClass = createEClass(READ);
-    createEAttribute(readEClass, READ__PATH);
-
     addElementEClass = createEClass(ADD_ELEMENT);
     createEReference(addElementEClass, ADD_ELEMENT__ELEMENT);
 
     removeElementEClass = createEClass(REMOVE_ELEMENT);
     createEAttribute(removeElementEClass, REMOVE_ELEMENT__KEY);
 
-    editObjectEClass = createEClass(EDIT_OBJECT);
-    createEAttribute(editObjectEClass, EDIT_OBJECT__KEY);
-    createEReference(editObjectEClass, EDIT_OBJECT__VALUE);
+    editElementEClass = createEClass(EDIT_ELEMENT);
+    createEAttribute(editElementEClass, EDIT_ELEMENT__KEY);
+    createEReference(editElementEClass, EDIT_ELEMENT__VALUE);
 
     toStringEClass = createEClass(TO_STRING);
     createEAttribute(toStringEClass, TO_STRING__PATH);
@@ -805,10 +772,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    readEClass.getESuperTypes().add(this.getCommand());
     addElementEClass.getESuperTypes().add(this.getCommand());
     removeElementEClass.getESuperTypes().add(this.getCommand());
-    editObjectEClass.getESuperTypes().add(this.getCommand());
+    editElementEClass.getESuperTypes().add(this.getCommand());
     toStringEClass.getESuperTypes().add(this.getCommand());
     toCSVEClass.getESuperTypes().add(this.getCommand());
     entityEClass.getESuperTypes().add(this.getExpression());
@@ -831,18 +797,15 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(readEClass, Read.class, "Read", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRead_Path(), ecorePackage.getEString(), "path", null, 0, 1, Read.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(addElementEClass, AddElement.class, "AddElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAddElement_Element(), this.getElement(), null, "element", null, 0, 1, AddElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(removeElementEClass, RemoveElement.class, "RemoveElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRemoveElement_Key(), ecorePackage.getEString(), "key", null, 0, 1, RemoveElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(editObjectEClass, EditObject.class, "EditObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEditObject_Key(), ecorePackage.getEString(), "key", null, 0, 1, EditObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEditObject_Value(), this.getExpression(), null, "value", null, 0, 1, EditObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(editElementEClass, EditElement.class, "EditElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEditElement_Key(), ecorePackage.getEString(), "key", null, 0, 1, EditElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEditElement_Value(), this.getExpression(), null, "value", null, 0, 1, EditElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(toStringEClass, ToString.class, "ToString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getToString_Path(), ecorePackage.getEString(), "path", null, 0, 1, ToString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

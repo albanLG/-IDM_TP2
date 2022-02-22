@@ -14,6 +14,7 @@ import org.xtext.example.jppjson.myDsl.Value
 import org.xtext.example.jppjson.myDsl.JsonString
 import org.xtext.example.jppjson.myDsl.ToCSV
 import org.xtext.example.jppjson.myDsl.RemoveElement
+import org.xtext.example.jppjson.myDsl.EditElement
 
 class JavaCompilerXtend {
 	val Programme prog
@@ -29,7 +30,7 @@ class JavaCompilerXtend {
 		var JAVA_OUTPUT = "jpp.java"
 		
 		Files.write(javaCode.getBytes(), new File(JAVA_OUTPUT));
-		
+				
 		var p = Runtime.getRuntime().exec("javac -d . " + JAVA_OUTPUT);
 		
 		var testp = Runtime.getRuntime().exec("java " + "jpp.FirstApp");
@@ -97,6 +98,9 @@ class JavaCompilerXtend {
 			if(command instanceof RemoveElement){
 				java += doRemoveElement(command)
 			}
+			if(command instanceof EditElement){
+				java += doEditElement(command)
+			}
 		}
 		return java
 		
@@ -163,7 +167,20 @@ class JavaCompilerXtend {
 		
 		return java
 	}
-	
+	def String doEditElement(EditElement eidtElement){
+		
+		var java = '''
+		
+					((ObjectNode) rootNode).put("«eidtElement.getKey»", "«doExpression(eidtElement.getValue)»");
+					
+					strResult = objMapper.writeValueAsString(rootNode);	
+					FileWriter file = new FileWriter("«this.filePath»");
+					file.write(strResult);
+					file.flush();
+		'''
+		
+		return java
+	}
 	def String doExpression(Expression expression){
 		if(expression instanceof Value){
 			return doValue(expression)
@@ -176,6 +193,7 @@ class JavaCompilerXtend {
 			return value.getVal
 		}
 	}
+	
 	
 	
 	

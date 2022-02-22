@@ -38,10 +38,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getJsonBooleanAccess().getValAlternatives_0(), "rule__JsonBoolean__ValAlternatives_0");
 			builder.put(grammarAccess.getLoadfileAccess().getGroup(), "rule__Loadfile__Group__0");
 			builder.put(grammarAccess.getCommandAccess().getGroup(), "rule__Command__Group__0");
-			builder.put(grammarAccess.getReadAccess().getGroup(), "rule__Read__Group__0");
 			builder.put(grammarAccess.getAddElementAccess().getGroup(), "rule__AddElement__Group__0");
 			builder.put(grammarAccess.getRemoveElementAccess().getGroup(), "rule__RemoveElement__Group__0");
-			builder.put(grammarAccess.getEditObjectAccess().getGroup(), "rule__EditObject__Group__0");
+			builder.put(grammarAccess.getEditElementAccess().getGroup(), "rule__EditElement__Group__0");
 			builder.put(grammarAccess.getToStringAccess().getGroup(), "rule__ToString__Group__0");
 			builder.put(grammarAccess.getToCSVAccess().getGroup(), "rule__ToCSV__Group__0");
 			builder.put(grammarAccess.getElementAccess().getGroup(), "rule__Element__Group__0");
@@ -55,11 +54,10 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProgrammeAccess().getLoadfilesAssignment(), "rule__Programme__LoadfilesAssignment");
 			builder.put(grammarAccess.getLoadfileAccess().getPathAssignment_1(), "rule__Loadfile__PathAssignment_1");
 			builder.put(grammarAccess.getLoadfileAccess().getCommandsAssignment_4(), "rule__Loadfile__CommandsAssignment_4");
-			builder.put(grammarAccess.getReadAccess().getPathAssignment_1(), "rule__Read__PathAssignment_1");
 			builder.put(grammarAccess.getAddElementAccess().getElementAssignment_1(), "rule__AddElement__ElementAssignment_1");
 			builder.put(grammarAccess.getRemoveElementAccess().getKeyAssignment_1(), "rule__RemoveElement__KeyAssignment_1");
-			builder.put(grammarAccess.getEditObjectAccess().getKeyAssignment_1(), "rule__EditObject__KeyAssignment_1");
-			builder.put(grammarAccess.getEditObjectAccess().getValueAssignment_3(), "rule__EditObject__ValueAssignment_3");
+			builder.put(grammarAccess.getEditElementAccess().getKeyAssignment_1(), "rule__EditElement__KeyAssignment_1");
+			builder.put(grammarAccess.getEditElementAccess().getValueAssignment_3(), "rule__EditElement__ValueAssignment_3");
 			builder.put(grammarAccess.getToStringAccess().getPathAssignment_1(), "rule__ToString__PathAssignment_1");
 			builder.put(grammarAccess.getToCSVAccess().getPathAssignment_1(), "rule__ToCSV__PathAssignment_1");
 			builder.put(grammarAccess.getElementAccess().getKeyAssignment_0(), "rule__Element__KeyAssignment_0");

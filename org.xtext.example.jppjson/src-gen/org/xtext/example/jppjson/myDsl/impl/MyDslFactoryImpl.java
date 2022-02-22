@@ -68,10 +68,9 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.PROGRAMME: return createProgramme();
       case MyDslPackage.LOADFILE: return createLoadfile();
       case MyDslPackage.COMMAND: return createCommand();
-      case MyDslPackage.READ: return createRead();
       case MyDslPackage.ADD_ELEMENT: return createAddElement();
       case MyDslPackage.REMOVE_ELEMENT: return createRemoveElement();
-      case MyDslPackage.EDIT_OBJECT: return createEditObject();
+      case MyDslPackage.EDIT_ELEMENT: return createEditElement();
       case MyDslPackage.TO_STRING: return createToString();
       case MyDslPackage.TO_CSV: return createToCSV();
       case MyDslPackage.EXPRESSION: return createExpression();
@@ -132,18 +131,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
-  public Read createRead()
-  {
-    ReadImpl read = new ReadImpl();
-    return read;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public AddElement createAddElement()
   {
     AddElementImpl addElement = new AddElementImpl();
@@ -168,10 +155,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * @generated
    */
   @Override
-  public EditObject createEditObject()
+  public EditElement createEditElement()
   {
-    EditObjectImpl editObject = new EditObjectImpl();
-    return editObject;
+    EditElementImpl editElement = new EditElementImpl();
+    return editElement;
   }
 
   /**

@@ -16,7 +16,7 @@ import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequence
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.jppjson.myDsl.AddElement;
 import org.xtext.example.jppjson.myDsl.BinExp;
-import org.xtext.example.jppjson.myDsl.EditObject;
+import org.xtext.example.jppjson.myDsl.EditElement;
 import org.xtext.example.jppjson.myDsl.Element;
 import org.xtext.example.jppjson.myDsl.JArray;
 import org.xtext.example.jppjson.myDsl.JObject;
@@ -27,7 +27,6 @@ import org.xtext.example.jppjson.myDsl.JsonString;
 import org.xtext.example.jppjson.myDsl.Loadfile;
 import org.xtext.example.jppjson.myDsl.MyDslPackage;
 import org.xtext.example.jppjson.myDsl.Programme;
-import org.xtext.example.jppjson.myDsl.Read;
 import org.xtext.example.jppjson.myDsl.RemoveElement;
 import org.xtext.example.jppjson.myDsl.ToCSV;
 import org.xtext.example.jppjson.myDsl.ToString;
@@ -53,8 +52,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.BIN_EXP:
 				sequence_BinExp(context, (BinExp) semanticObject); 
 				return; 
-			case MyDslPackage.EDIT_OBJECT:
-				sequence_EditObject(context, (EditObject) semanticObject); 
+			case MyDslPackage.EDIT_ELEMENT:
+				sequence_EditElement(context, (EditElement) semanticObject); 
 				return; 
 			case MyDslPackage.ELEMENT:
 				sequence_Element(context, (Element) semanticObject); 
@@ -82,9 +81,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.PROGRAMME:
 				sequence_Programme(context, (Programme) semanticObject); 
-				return; 
-			case MyDslPackage.READ:
-				sequence_Read(context, (Read) semanticObject); 
 				return; 
 			case MyDslPackage.REMOVE_ELEMENT:
 				sequence_RemoveElement(context, (RemoveElement) semanticObject); 
@@ -143,22 +139,22 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     Command returns EditObject
-	 *     EditObject returns EditObject
+	 *     Command returns EditElement
+	 *     EditElement returns EditElement
 	 *
 	 * Constraint:
 	 *     (key=STRING value=Expression)
 	 */
-	protected void sequence_EditObject(ISerializationContext context, EditObject semanticObject) {
+	protected void sequence_EditElement(ISerializationContext context, EditElement semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EDIT_OBJECT__KEY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EDIT_OBJECT__KEY));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EDIT_OBJECT__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EDIT_OBJECT__VALUE));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EDIT_ELEMENT__KEY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EDIT_ELEMENT__KEY));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EDIT_ELEMENT__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EDIT_ELEMENT__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEditObjectAccess().getKeySTRINGTerminalRuleCall_1_0(), semanticObject.getKey());
-		feeder.accept(grammarAccess.getEditObjectAccess().getValueExpressionParserRuleCall_3_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getEditElementAccess().getKeySTRINGTerminalRuleCall_1_0(), semanticObject.getKey());
+		feeder.accept(grammarAccess.getEditElementAccess().getValueExpressionParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -307,25 +303,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Programme(ISerializationContext context, Programme semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Command returns Read
-	 *     Read returns Read
-	 *
-	 * Constraint:
-	 *     path=STRING
-	 */
-	protected void sequence_Read(ISerializationContext context, Read semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.READ__PATH) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.READ__PATH));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getReadAccess().getPathSTRINGTerminalRuleCall_1_0(), semanticObject.getPath());
-		feeder.finish();
 	}
 	
 	

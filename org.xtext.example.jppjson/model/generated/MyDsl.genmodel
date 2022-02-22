@@ -14,18 +14,15 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Loadfile/commands"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Command"/>
-    <genClasses ecoreClass="MyDsl.ecore#//Read">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Read/path"/>
-    </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//AddElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AddElement/element"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//RemoveElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//RemoveElement/key"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//EditObject">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//EditObject/key"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//EditObject/value"/>
+    <genClasses ecoreClass="MyDsl.ecore#//EditElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//EditElement/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//EditElement/value"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ToString">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ToString/path"/>

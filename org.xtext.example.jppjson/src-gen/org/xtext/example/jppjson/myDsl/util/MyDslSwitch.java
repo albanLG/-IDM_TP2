@@ -94,14 +94,6 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.READ:
-      {
-        Read read = (Read)theEObject;
-        T result = caseRead(read);
-        if (result == null) result = caseCommand(read);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case MyDslPackage.ADD_ELEMENT:
       {
         AddElement addElement = (AddElement)theEObject;
@@ -118,11 +110,11 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.EDIT_OBJECT:
+      case MyDslPackage.EDIT_ELEMENT:
       {
-        EditObject editObject = (EditObject)theEObject;
-        T result = caseEditObject(editObject);
-        if (result == null) result = caseCommand(editObject);
+        EditElement editElement = (EditElement)theEObject;
+        T result = caseEditElement(editElement);
+        if (result == null) result = caseCommand(editElement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -287,22 +279,6 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Read</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Read</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseRead(Read object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Add Element</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -335,17 +311,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Edit Object</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Edit Element</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Edit Object</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Edit Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseEditObject(EditObject object)
+  public T caseEditElement(EditElement object)
   {
     return null;
   }

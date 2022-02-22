@@ -11,9 +11,6 @@
         eType="#//Command" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Command"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Read" eSuperTypes="#//Command">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AddElement" eSuperTypes="#//Command">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="#//Element"
         containment="true"/>
@@ -21,7 +18,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="RemoveElement" eSuperTypes="#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EditObject" eSuperTypes="#//Command">
+  <eClassifiers xsi:type="ecore:EClass" name="EditElement" eSuperTypes="#//Command">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
         containment="true"/>

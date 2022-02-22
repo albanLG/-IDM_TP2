@@ -10,6 +10,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.xtext.example.jppjson.myDsl.AddElement;
 import org.xtext.example.jppjson.myDsl.Command;
+import org.xtext.example.jppjson.myDsl.EditElement;
 import org.xtext.example.jppjson.myDsl.Expression;
 import org.xtext.example.jppjson.myDsl.JsonString;
 import org.xtext.example.jppjson.myDsl.Loadfile;
@@ -116,6 +117,11 @@ public class JavaCompilerXtend {
           String _java_3 = java;
           String _doRemoveElement = this.doRemoveElement(((RemoveElement)command));
           java = (_java_3 + _doRemoveElement);
+        }
+        if ((command instanceof EditElement)) {
+          String _java_4 = java;
+          String _doEditElement = this.doEditElement(((EditElement)command));
+          java = (_java_4 + _doEditElement);
         }
       }
     }
@@ -233,6 +239,38 @@ public class JavaCompilerXtend {
     _builder.append(_path, "\t\t  ");
     _builder.append("\"), rootNode);");
     _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    String java = _builder.toString();
+    return java;
+  }
+  
+  public String doEditElement(final EditElement eidtElement) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("((ObjectNode) rootNode).put(\"");
+    String _key = eidtElement.getKey();
+    _builder.append(_key, "\t\t\t");
+    _builder.append("\", \"");
+    String _doExpression = this.doExpression(eidtElement.getValue());
+    _builder.append(_doExpression, "\t\t\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("strResult = objMapper.writeValueAsString(rootNode);\t");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("FileWriter file = new FileWriter(\"");
+    _builder.append(this.filePath, "\t\t\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
+    _builder.append("file.write(strResult);");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("file.flush();");
     _builder.newLine();
     String java = _builder.toString();
     return java;

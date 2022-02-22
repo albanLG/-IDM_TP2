@@ -51,15 +51,6 @@ public interface MyDslFactory extends EFactory
   Command createCommand();
 
   /**
-   * Returns a new object of class '<em>Read</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Read</em>'.
-   * @generated
-   */
-  Read createRead();
-
-  /**
    * Returns a new object of class '<em>Add Element</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -78,13 +69,13 @@ public interface MyDslFactory extends EFactory
   RemoveElement createRemoveElement();
 
   /**
-   * Returns a new object of class '<em>Edit Object</em>'.
+   * Returns a new object of class '<em>Edit Element</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Edit Object</em>'.
+   * @return a new object of class '<em>Edit Element</em>'.
    * @generated
    */
-  EditObject createEditObject();
+  EditElement createEditElement();
 
   /**
    * Returns a new object of class '<em>To String</em>'.
