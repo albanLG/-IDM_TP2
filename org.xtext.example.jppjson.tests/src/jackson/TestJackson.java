@@ -17,7 +17,7 @@ public class TestJackson {
 		String strResult = "";
 		ObjectMapper objMapper = new ObjectMapper();
 		JsonNode rootNode = objMapper.readTree(new File("testvide.json"));
-		((ObjectNode) rootNode).put("hello", "world");
+		((ObjectNode) rootNode).put("vide", "nice");
 		
 		strResult = objMapper.writeValueAsString(rootNode);
 				

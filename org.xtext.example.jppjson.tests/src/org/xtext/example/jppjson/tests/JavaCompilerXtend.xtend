@@ -1,4 +1,5 @@
 package org.xtext.example.jppjson.tests
+
 import java.io.BufferedReader;
 
 import java.io.File;
@@ -19,104 +20,95 @@ import org.xtext.example.jppjson.myDsl.EditElement
 class JavaCompilerXtend {
 	val Programme prog
 	var String filePath
-	
-	new(Programme prog){
+
+	new(Programme prog) {
 		this.prog = prog
 	}
-	
-	def run(){	
+
+	def run() {
 		var javaCode = compile(prog)
 		System.out.println(javaCode);
-		var JAVA_OUTPUT = "jpp.java"
-		
-		Files.write(javaCode.getBytes(), new File(JAVA_OUTPUT));
-				
-		var p = Runtime.getRuntime().exec("javac -d . " + JAVA_OUTPUT);
-		
-		var testp = Runtime.getRuntime().exec("java " + "jpp.FirstApp");
-		
+		var JAVA_OUTPUT = "jppJson.java"
 
-		
-		var stdInput = new BufferedReader(new 
-		         InputStreamReader(p.getInputStream()));
-		
-		  // error
-		var stdError = new BufferedReader(new 
-		         InputStreamReader(p.getErrorStream()));
-		
-		var o = "";
-		while ((o = stdInput.readLine()) !== null) {
-		        System.out.println(o);
+		Files.write(javaCode.getBytes(), new File(JAVA_OUTPUT));
+
+		Runtime.getRuntime().exec(
+			"javac -cp \"jackson-annotations-2.13.0.jar:jackson-core-2.13.0.jar:jackson-databind-2.13.0.jar:jackson-dataformat-csv-2.13.0.jar\" " +
+				JAVA_OUTPUT);
+
+		try {
+			Thread.sleep(3 * 1000);
+		} catch (InterruptedException ie) {
+			Thread.currentThread().interrupt();
 		}
-		
-		var err = ""; 
-		while ((err = stdError.readLine()) !== null) {
-		        System.out.println(err);
-		    
-				}
-			
+		var testp = Runtime.getRuntime().exec(
+			"java -cp .:jackson-annotations-2.13.0.jar:jackson-core-2.13.0.jar:jackson-databind-2.13.0.jar:jackson-dataformat-csv-2.13.0.jar " +
+				"JppJson");
+
+		var stdOutPut = new BufferedReader(new InputStreamReader(testp.getInputStream()));
+
+		var outPut = "";
+		while ((outPut = stdOutPut.readLine()) !== null) {
+			System.out.println(outPut);
+		}
+
 	}
 
-	
-	def String compile (Programme prog){
-		var java="package jpp;\n"+
-				 "import java.io.File;\n"+
-				 "import java.io.FileWriter;\n"+
-				 "import java.io.IOException;\n"+
-				 "import com.fasterxml.jackson.core.JsonProcessingException;\n"+
-				 "import com.fasterxml.jackson.databind.JsonNode;\n"+
-				 "import com.fasterxml.jackson.databind.ObjectMapper;\n"+
-				 "import com.fasterxml.jackson.databind.node.ObjectNode;\n"+
-				 "class FirstApp {\r\n"+
-				 "   public static void main (String[] args) throws IOException {\r\n"
-				
-		for(loadfile:prog.getLoadfiles){
+	def String compile(Programme prog) {
+		var java = "import java.io.File;\n" + "import java.io.FileWriter;\n" + "import java.io.IOException;\n" +
+			"import com.fasterxml.jackson.core.JsonProcessingException;\n" +
+			"import com.fasterxml.jackson.databind.JsonNode;\n" +
+			"import com.fasterxml.jackson.databind.ObjectMapper;\n" +
+			"import com.fasterxml.jackson.databind.node.ObjectNode;\n" + "class JppJson {\r\n" +
+			"   public static void main (String[] args) throws IOException {\r\n"
+
+		for (loadfile : prog.getLoadfiles) {
 			java += doLoadFile(loadfile) + "\n";
 		}
-		java += "   }\r\n"
-			+ "}";
+		java += "   }\r\n" + "}";
 		return java
 	}
-	
-	def String doLoadFile(Loadfile loadfile){
+
+	def String doLoadFile(Loadfile loadfile) {
 		this.filePath = loadfile.getPath
-		var java ='''
-						String strResult = "";
-						ObjectMapper objMapper = new ObjectMapper();
-						JsonNode rootNode = objMapper.readTree(new File("«loadfile.getPath»"));
-			    '''
-		for(command : loadfile.getCommands){
-			if(command instanceof ToString){
+		var java = '''
+			String strResult = "";
+			ObjectMapper objMapper = new ObjectMapper();
+			JsonNode rootNode = objMapper.readTree(new File("«loadfile.getPath»"));
+		 '''
+		for (command : loadfile.getCommands) {
+			if (command instanceof ToString) {
 				java += doToString(command)
 			}
-			if(command instanceof AddElement){
+			if (command instanceof AddElement) {
 				java += doAddElement(command)
 			}
-			if(command instanceof ToCSV){
+			if (command instanceof ToCSV) {
 				java += doExportToCSV(command)
 			}
-			if(command instanceof RemoveElement){
+			if (command instanceof RemoveElement) {
 				java += doRemoveElement(command)
 			}
-			if(command instanceof EditElement){
+			if (command instanceof EditElement) {
 				java += doEditElement(command)
 			}
 		}
 		return java
-		
+
 	}
-	
-	def String doToString(ToString toString){
+
+	def String doToString(ToString toString) {
 		var java = '''
-		 		strResult = rootNode.toString();
-		 		Files.write(strResult.getBytes(), new File("«toString.path»"));
-		 '''
-		
+			strResult = rootNode.toString();
+			Files.write(strResult.getBytes(), new File("«toString.path»"));
+			System.out.print(strResult);
+		'''
+
 		return java
 	}
-	
-	def String doAddElement(AddElement addElement){
-		var java ='''
+
+	def String doAddElement(AddElement addElement) {
+		var java = '''
 			((ObjectNode) rootNode).put("«addElement.getElement.getKey»", "«doExpression(addElement.getElement.getValue)»");
 			
 			strResult = objMapper.writeValueAsString(rootNode);	
@@ -124,77 +116,85 @@ class JavaCompilerXtend {
 			file.write(strResult);
 			file.flush();
 			
+			System.out.print(strResult);
+			
 		'''
-		
+
 		return java
 	}
-	
-	def String doRemoveElement(RemoveElement removeElement){
-		var java='''			              
+
+	def String doRemoveElement(RemoveElement removeElement) {
+		var java = '''			              
 			((ObjectNode) rootNode).remove("«removeElement.getKey»");
 			String resultUpdate = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
 			      		
 			FileWriter file = new FileWriter("«this.filePath»");
 			file.write(resultUpdate);
 			file.flush();
+			
+			System.out.print(resultUpdate);
 		'''
-		
-		return java
-	}
-	
-	def String doExportToCSV(ToCSV toCSV){
-		var java = '''
-				  Builder csvSchemaBuilder = CsvSchema.builder(); 
-				  JsonNode firstObject = rootNode;
-				  
-				  while(firstObject.elements().hasNext()) {
-					  firstObject.fieldNames().forEachRemaining(fieldName -> {
-						  
-						  csvSchemaBuilder.addColumn(fieldName);
-						  } ); 
-					  firstObject = firstObject.elements().next();
-				  }
-		
-				  
-				  CsvSchema csvSchema = csvSchemaBuilder.build().withHeader();
-				  
-				  CsvMapper csvMapper = new CsvMapper(); 
-				  
-				  csvMapper.writerFor(JsonNode.class).with(csvSchema).writeValue(new File("«toCSV.getPath»"), rootNode);
 
-		'''
-		
-		
 		return java
 	}
-	def String doEditElement(EditElement eidtElement){
-		
+
+	def String doExportToCSV(ToCSV toCSV) {
 		var java = '''
-		
-					((ObjectNode) rootNode).put("«eidtElement.getKey»", "«doExpression(eidtElement.getValue)»");
-					
-					strResult = objMapper.writeValueAsString(rootNode);	
-					FileWriter file = new FileWriter("«this.filePath»");
-					file.write(strResult);
-					file.flush();
+					  Builder csvSchemaBuilder = CsvSchema.builder(); 
+					  JsonNode firstObject = rootNode;
+					  
+					  while(firstObject.elements().hasNext()) {
+			 firstObject.fieldNames().forEachRemaining(fieldName -> {
+			  
+			  csvSchemaBuilder.addColumn(fieldName);
+			  } ); 
+			 firstObject = firstObject.elements().next();
+					  }
+			
+					  
+					  CsvSchema csvSchema = csvSchemaBuilder.build().withHeader();
+					  
+					  CsvMapper csvMapper = new CsvMapper(); 
+					  
+					  csvMapper.writerFor(JsonNode.class).with(csvSchema).writeValue(new File("«toCSV.getPath»"), rootNode);
+					  
+					  System.out.print("Action Réussite");
+					  
+					  
+			
 		'''
-		
+
 		return java
 	}
-	def String doExpression(Expression expression){
-		if(expression instanceof Value){
+
+	def String doEditElement(EditElement eidtElement) {
+
+		var java = '''
+			
+						((ObjectNode) rootNode).put("«eidtElement.getKey»", "«doExpression(eidtElement.getValue)»");
+						
+						strResult = objMapper.writeValueAsString(rootNode);	
+						FileWriter file = new FileWriter("«this.filePath»");
+						file.write(strResult);
+						file.flush();
+						
+						System.out.print(strResult);
+		'''
+
+		return java
+	}
+
+	def String doExpression(Expression expression) {
+		if (expression instanceof Value) {
 			return doValue(expression)
 		}
-		
+
 	}
-	
-	def String doValue(Value value){
-		if( value instanceof JsonString){
+
+	def String doValue(Value value) {
+		if (value instanceof JsonString) {
 			return value.getVal
 		}
 	}
-	
-	
-	
-	
+
 }

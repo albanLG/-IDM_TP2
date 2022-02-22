@@ -34,25 +34,30 @@ public class JavaCompilerXtend {
     try {
       String javaCode = this.compile(this.prog);
       System.out.println(javaCode);
-      String JAVA_OUTPUT = "jpp.java";
+      String JAVA_OUTPUT = "jppJson.java";
       byte[] _bytes = javaCode.getBytes();
       File _file = new File(JAVA_OUTPUT);
       Files.write(_bytes, _file);
-      Process p = Runtime.getRuntime().exec(("javac -d . " + JAVA_OUTPUT));
-      Process testp = Runtime.getRuntime().exec(("java " + "jpp.FirstApp"));
-      InputStream _inputStream = p.getInputStream();
-      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
-      BufferedReader stdInput = new BufferedReader(_inputStreamReader);
-      InputStream _errorStream = p.getErrorStream();
-      InputStreamReader _inputStreamReader_1 = new InputStreamReader(_errorStream);
-      BufferedReader stdError = new BufferedReader(_inputStreamReader_1);
-      String o = "";
-      while (((o = stdInput.readLine()) != null)) {
-        System.out.println(o);
+      Runtime.getRuntime().exec(
+        ("javac -cp \"jackson-annotations-2.13.0.jar:jackson-core-2.13.0.jar:jackson-databind-2.13.0.jar:jackson-dataformat-csv-2.13.0.jar\" " + JAVA_OUTPUT));
+      try {
+        Thread.sleep((3 * 1000));
+      } catch (final Throwable _t) {
+        if (_t instanceof InterruptedException) {
+          Thread.currentThread().interrupt();
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
       }
-      String err = "";
-      while (((err = stdError.readLine()) != null)) {
-        System.out.println(err);
+      Process testp = Runtime.getRuntime().exec(
+        ("java -cp .:jackson-annotations-2.13.0.jar:jackson-core-2.13.0.jar:jackson-databind-2.13.0.jar:jackson-dataformat-csv-2.13.0.jar " + 
+          "JppJson"));
+      InputStream _inputStream = testp.getInputStream();
+      InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
+      BufferedReader stdOutPut = new BufferedReader(_inputStreamReader);
+      String outPut = "";
+      while (((outPut = stdOutPut.readLine()) != null)) {
+        System.out.println(outPut);
       }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -60,15 +65,11 @@ public class JavaCompilerXtend {
   }
   
   public String compile(final Programme prog) {
-    String java = ((((((((("package jpp;\n" + 
-      "import java.io.File;\n") + 
-      "import java.io.FileWriter;\n") + 
-      "import java.io.IOException;\n") + 
+    String java = (((((((("import java.io.File;\n" + "import java.io.FileWriter;\n") + "import java.io.IOException;\n") + 
       "import com.fasterxml.jackson.core.JsonProcessingException;\n") + 
       "import com.fasterxml.jackson.databind.JsonNode;\n") + 
       "import com.fasterxml.jackson.databind.ObjectMapper;\n") + 
-      "import com.fasterxml.jackson.databind.node.ObjectNode;\n") + 
-      "class FirstApp {\r\n") + 
+      "import com.fasterxml.jackson.databind.node.ObjectNode;\n") + "class JppJson {\r\n") + 
       "   public static void main (String[] args) throws IOException {\r\n");
     EList<Loadfile> _loadfiles = prog.getLoadfiles();
     for (final Loadfile loadfile : _loadfiles) {
@@ -137,6 +138,8 @@ public class JavaCompilerXtend {
     _builder.append(_path);
     _builder.append("\"));");
     _builder.newLineIfNotEmpty();
+    _builder.append("System.out.print(strResult);");
+    _builder.newLine();
     String java = _builder.toString();
     return java;
   }
@@ -163,6 +166,9 @@ public class JavaCompilerXtend {
     _builder.append("file.flush();");
     _builder.newLine();
     _builder.newLine();
+    _builder.append("System.out.print(strResult);");
+    _builder.newLine();
+    _builder.newLine();
     String java = _builder.toString();
     return java;
   }
@@ -186,6 +192,9 @@ public class JavaCompilerXtend {
     _builder.newLine();
     _builder.append("file.flush();");
     _builder.newLine();
+    _builder.newLine();
+    _builder.append("System.out.print(resultUpdate);");
+    _builder.newLine();
     String java = _builder.toString();
     return java;
   }
@@ -203,18 +212,18 @@ public class JavaCompilerXtend {
     _builder.append("\t\t  ");
     _builder.append("while(firstObject.elements().hasNext()) {");
     _builder.newLine();
-    _builder.append("\t\t\t  ");
+    _builder.append(" ");
     _builder.append("firstObject.fieldNames().forEachRemaining(fieldName -> {");
     _builder.newLine();
-    _builder.append("\t\t\t\t  ");
+    _builder.append("  ");
     _builder.newLine();
-    _builder.append("\t\t\t\t  ");
+    _builder.append("  ");
     _builder.append("csvSchemaBuilder.addColumn(fieldName);");
     _builder.newLine();
-    _builder.append("\t\t\t\t  ");
+    _builder.append("  ");
     _builder.append("} ); ");
     _builder.newLine();
-    _builder.append("\t\t\t  ");
+    _builder.append(" ");
     _builder.append("firstObject = firstObject.elements().next();");
     _builder.newLine();
     _builder.append("\t\t  ");
@@ -239,6 +248,15 @@ public class JavaCompilerXtend {
     _builder.append(_path, "\t\t  ");
     _builder.append("\"), rootNode);");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t\t  ");
+    _builder.newLine();
+    _builder.append("\t\t  ");
+    _builder.append("System.out.print(\"Action Réussite\");");
+    _builder.newLine();
+    _builder.append("\t\t  ");
+    _builder.newLine();
+    _builder.append("\t\t  ");
+    _builder.newLine();
     _builder.newLine();
     String java = _builder.toString();
     return java;
@@ -271,6 +289,11 @@ public class JavaCompilerXtend {
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("file.flush();");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("System.out.print(strResult);");
     _builder.newLine();
     String java = _builder.toString();
     return java;
