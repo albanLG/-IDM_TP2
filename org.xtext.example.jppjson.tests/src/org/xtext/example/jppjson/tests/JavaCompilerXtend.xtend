@@ -16,7 +16,6 @@ import org.xtext.example.jppjson.myDsl.JsonString
 import org.xtext.example.jppjson.myDsl.ToCSV
 import org.xtext.example.jppjson.myDsl.RemoveElement
 import org.xtext.example.jppjson.myDsl.EditElement
-import java.util.concurrent.TimeUnit
 
 class JavaCompilerXtend {
 	val Programme prog
@@ -57,7 +56,7 @@ class JavaCompilerXtend {
 		while ((outPut = stdOutPut.readLine()) !== null) {
 			System.out.println(outPut);
 		}
-		System.out.println(totalTime+" nanoseconds");
+		System.out.println(totalTime+"nanoseconds");
 
 	}
 

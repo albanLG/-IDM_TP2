@@ -11,7 +11,7 @@ import org.xtext.example.jppjson.myDsl.Programme
 
 @ExtendWith(InjectionExtension)
 @InjectWith(MyDslInjectorProvider)
-class JavaCompilerTest {
+class ScalaCompilerTest {
 	@Inject
 	ParseHelper<Programme> parseHelper
 	
@@ -20,7 +20,7 @@ class JavaCompilerTest {
 		
 		val result = parseHelper.parse(''' 
 		Load("testvide.json"){
-			AddElement("Hello":"World");
+			RemoveElement("Hello");
 		}
 		''')
 		
@@ -28,7 +28,7 @@ class JavaCompilerTest {
 		val errors = result.eResource.errors
 		Assertions.assertTrue(errors.isEmpty,'''Unexpected errors: «errors.join(", ")»''')
 		
-		val JavaCompilerXtend cmpJava = new JavaCompilerXtend(result)
+		val ScalaCompilerXtend cmpJava = new ScalaCompilerXtend(result)
 		
 		cmpJava.run()
 		

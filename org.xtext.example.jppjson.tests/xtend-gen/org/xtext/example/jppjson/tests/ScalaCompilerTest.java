@@ -17,7 +17,7 @@ import org.xtext.example.jppjson.myDsl.Programme;
 @ExtendWith(InjectionExtension.class)
 @InjectWith(MyDslInjectorProvider.class)
 @SuppressWarnings("all")
-public class JavaCompilerTest {
+public class ScalaCompilerTest {
   @Inject
   private ParseHelper<Programme> parseHelper;
   
@@ -28,7 +28,7 @@ public class JavaCompilerTest {
       _builder.append("Load(\"testvide.json\"){");
       _builder.newLine();
       _builder.append("\t");
-      _builder.append("AddElement(\"Hello\":\"World\");");
+      _builder.append("RemoveElement(\"Hello\");");
       _builder.newLine();
       _builder.append("}");
       _builder.newLine();
@@ -41,7 +41,7 @@ public class JavaCompilerTest {
       String _join = IterableExtensions.join(errors, ", ");
       _builder_1.append(_join);
       Assertions.assertTrue(_isEmpty, _builder_1.toString());
-      final JavaCompilerXtend cmpJava = new JavaCompilerXtend(result);
+      final ScalaCompilerXtend cmpJava = new ScalaCompilerXtend(result);
       cmpJava.run();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

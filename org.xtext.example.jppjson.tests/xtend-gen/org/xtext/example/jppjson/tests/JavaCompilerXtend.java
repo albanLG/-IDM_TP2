@@ -62,7 +62,7 @@ public class JavaCompilerXtend {
       while (((outPut = stdOutPut.readLine()) != null)) {
         System.out.println(outPut);
       }
-      String _plus = (Long.valueOf(totalTime) + " nanoseconds");
+      String _plus = (Long.valueOf(totalTime) + "nanoseconds");
       System.out.println(_plus);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

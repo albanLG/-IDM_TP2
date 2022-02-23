@@ -1,0 +1,3 @@
+Load("testvide.json"){
+	ExportCSV("test.csv");
+}

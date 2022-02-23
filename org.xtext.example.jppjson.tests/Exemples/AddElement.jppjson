@@ -1,0 +1,3 @@
+Load("testvide.json"){
+	AddElement("Hello":"World");
+}
