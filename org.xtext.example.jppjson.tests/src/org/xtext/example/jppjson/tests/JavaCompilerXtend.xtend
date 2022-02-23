@@ -61,11 +61,14 @@ class JavaCompilerXtend {
 	}
 
 	def String compile(Programme prog) {
-		var java = "import java.io.File;\n" + "import java.io.FileWriter;\n" + "import java.io.IOException;\n" +
+		var java = "import java.io.File;\n" + "import java.io.FileWriter;\n" +"import com.google.common.io.Files;\n"+ "import java.io.IOException;\n" +
 			"import com.fasterxml.jackson.core.JsonProcessingException;\n" +
 			"import com.fasterxml.jackson.databind.JsonNode;\n" +
 			"import com.fasterxml.jackson.databind.ObjectMapper;\n" +
-			"import com.fasterxml.jackson.databind.node.ObjectNode;\n" + "class JppJson {\r\n" +
+			"import com.fasterxml.jackson.databind.node.ObjectNode;\n" +"
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;\n"+
+"import com.fasterxml.jackson.dataformat.csv.CsvSchema;\n"+
+"import com.fasterxml.jackson.dataformat.csv.CsvSchema.Builder;\n"+ "class JppJson {\r\n" +
 			"   public static void main (String[] args) throws IOException {\r\n"
 
 		for (loadfile : prog.getLoadfiles) {
@@ -123,6 +126,7 @@ class JavaCompilerXtend {
 			FileWriter file = new FileWriter("«this.filePath»");
 			file.write(strResult);
 			file.flush();
+			file.close();
 			
 			
 			System.out.print(strResult);
@@ -139,6 +143,7 @@ class JavaCompilerXtend {
 			FileWriter file = new FileWriter("«this.filePath»");
 			file.write(resultUpdate);
 			file.flush();
+			file.close();
 			
 			System.out.print(resultUpdate);
 		'''
@@ -185,7 +190,8 @@ class JavaCompilerXtend {
 						FileWriter file = new FileWriter("«this.filePath»");
 						file.write(strResult);
 						file.flush();
-						
+						file.close();
+									
 						System.out.print(strResult);
 		'''
 

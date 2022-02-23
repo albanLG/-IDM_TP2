@@ -28,7 +28,6 @@ public class ScalaCompilerTest {
       _builder.append("Load(\"testvide.json\"){");
       _builder.newLine();
       _builder.append("\t");
-      _builder.append("RemoveElement(\"Hello\");");
       _builder.newLine();
       _builder.append("}");
       _builder.newLine();

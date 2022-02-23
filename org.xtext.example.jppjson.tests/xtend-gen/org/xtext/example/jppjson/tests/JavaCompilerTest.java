@@ -28,7 +28,7 @@ public class JavaCompilerTest {
       _builder.append("Load(\"testvide.json\"){");
       _builder.newLine();
       _builder.append("\t");
-      _builder.append("AddElement(\"Hello\":\"World\");");
+      _builder.append("ExportString(\"test.txt\");");
       _builder.newLine();
       _builder.append("}");
       _builder.newLine();

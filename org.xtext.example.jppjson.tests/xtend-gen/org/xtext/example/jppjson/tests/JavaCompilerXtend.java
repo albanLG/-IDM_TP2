@@ -70,11 +70,13 @@ public class JavaCompilerXtend {
   }
   
   public String compile(final Programme prog) {
-    String java = (((((((("import java.io.File;\n" + "import java.io.FileWriter;\n") + "import java.io.IOException;\n") + 
+    String java = (((((((((((("import java.io.File;\n" + "import java.io.FileWriter;\n") + "import com.google.common.io.Files;\n") + "import java.io.IOException;\n") + 
       "import com.fasterxml.jackson.core.JsonProcessingException;\n") + 
       "import com.fasterxml.jackson.databind.JsonNode;\n") + 
       "import com.fasterxml.jackson.databind.ObjectMapper;\n") + 
-      "import com.fasterxml.jackson.databind.node.ObjectNode;\n") + "class JppJson {\r\n") + 
+      "import com.fasterxml.jackson.databind.node.ObjectNode;\n") + "\nimport com.fasterxml.jackson.dataformat.csv.CsvMapper;\n") + 
+      "import com.fasterxml.jackson.dataformat.csv.CsvSchema;\n") + 
+      "import com.fasterxml.jackson.dataformat.csv.CsvSchema.Builder;\n") + "class JppJson {\r\n") + 
       "   public static void main (String[] args) throws IOException {\r\n");
     EList<Loadfile> _loadfiles = prog.getLoadfiles();
     for (final Loadfile loadfile : _loadfiles) {
@@ -170,6 +172,8 @@ public class JavaCompilerXtend {
     _builder.newLine();
     _builder.append("file.flush();");
     _builder.newLine();
+    _builder.append("file.close();");
+    _builder.newLine();
     _builder.newLine();
     _builder.newLine();
     _builder.append("System.out.print(strResult);");
@@ -196,6 +200,8 @@ public class JavaCompilerXtend {
     _builder.append("file.write(resultUpdate);");
     _builder.newLine();
     _builder.append("file.flush();");
+    _builder.newLine();
+    _builder.append("file.close();");
     _builder.newLine();
     _builder.newLine();
     _builder.append("System.out.print(resultUpdate);");
@@ -296,6 +302,9 @@ public class JavaCompilerXtend {
     _builder.append("file.flush();");
     _builder.newLine();
     _builder.append("\t\t\t");
+    _builder.append("file.close();");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("System.out.print(strResult);");

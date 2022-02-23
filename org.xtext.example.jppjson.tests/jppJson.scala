@@ -10,14 +10,6 @@ object JppJson{
 var strResult = ""
 		    val objMapper = new ObjectMapper
 		    val rootNode = objMapper.readTree(new File("testvide.json"))
-rootNode.asInstanceOf[ObjectNode].remove("Hello")
-val resultUpdate = objMapper.writeValueAsString(rootNode)
-			
-val file = new FileWriter("testvide.json")
-file.write(resultUpdate)
-file.flush()
-			
-System.out.print(resultUpdate)
 
    }
 }
