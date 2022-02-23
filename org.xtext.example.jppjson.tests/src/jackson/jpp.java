@@ -8,15 +8,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 class FirstApp {
    public static void main (String[] args) throws IOException {
-String strResult = "";
-ObjectMapper objMapper = new ObjectMapper();
-JsonNode rootNode = objMapper.readTree(new File("testvide.json"));
-((ObjectNode) rootNode).remove("void");
-String resultUpdate = objMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootNode);
-      		
-FileWriter file = new FileWriter("testvide.json");
-file.write(resultUpdate);
-file.flush();
+	   String strResult = "";
+	   ObjectMapper objMapper = new ObjectMapper();
+	   JsonNode rootNode = objMapper.readTree(new File("testvide.json"));
+	   ((ObjectNode) rootNode).put("vide", "bah");
+
+	   strResult = objMapper.writeValueAsString(rootNode);	
+	   FileWriter file = new FileWriter("testvide.json");
+	   file.write(strResult);
+	   file.flush();
+	   
+	   file = new FileWriter("testvide.json");
+	   rootNode = objMapper.readTree(new File("testvide.json"));
+
+
+
 
    }
 }

@@ -49,9 +49,12 @@ public class JavaCompilerXtend {
           throw Exceptions.sneakyThrow(_t);
         }
       }
+      long startTime = System.currentTimeMillis();
       Process testp = Runtime.getRuntime().exec(
         ("java -cp .:jackson-annotations-2.13.0.jar:jackson-core-2.13.0.jar:jackson-databind-2.13.0.jar:jackson-dataformat-csv-2.13.0.jar " + 
           "JppJson"));
+      long endTime = System.currentTimeMillis();
+      long totalTime = (endTime - startTime);
       InputStream _inputStream = testp.getInputStream();
       InputStreamReader _inputStreamReader = new InputStreamReader(_inputStream);
       BufferedReader stdOutPut = new BufferedReader(_inputStreamReader);
@@ -59,6 +62,8 @@ public class JavaCompilerXtend {
       while (((outPut = stdOutPut.readLine()) != null)) {
         System.out.println(outPut);
       }
+      String _plus = (Long.valueOf(totalTime) + " nanoseconds");
+      System.out.println(_plus);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -166,8 +171,8 @@ public class JavaCompilerXtend {
     _builder.append("file.flush();");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("System.out.print(strResult);");
     _builder.newLine();
+    _builder.append("System.out.print(strResult);");
     _builder.newLine();
     String java = _builder.toString();
     return java;
@@ -226,7 +231,7 @@ public class JavaCompilerXtend {
     _builder.append(" ");
     _builder.append("firstObject = firstObject.elements().next();");
     _builder.newLine();
-    _builder.append("\t\t  ");
+    _builder.append(" \t  ");
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();

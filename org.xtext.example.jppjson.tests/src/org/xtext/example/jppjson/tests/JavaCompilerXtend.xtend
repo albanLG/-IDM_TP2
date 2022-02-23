@@ -16,6 +16,7 @@ import org.xtext.example.jppjson.myDsl.JsonString
 import org.xtext.example.jppjson.myDsl.ToCSV
 import org.xtext.example.jppjson.myDsl.RemoveElement
 import org.xtext.example.jppjson.myDsl.EditElement
+import java.util.concurrent.TimeUnit
 
 class JavaCompilerXtend {
 	val Programme prog
@@ -41,16 +42,22 @@ class JavaCompilerXtend {
 		} catch (InterruptedException ie) {
 			Thread.currentThread().interrupt();
 		}
+		var long startTime = System.currentTimeMillis 
+		
+
 		var testp = Runtime.getRuntime().exec(
 			"java -cp .:jackson-annotations-2.13.0.jar:jackson-core-2.13.0.jar:jackson-databind-2.13.0.jar:jackson-dataformat-csv-2.13.0.jar " +
 				"JppJson");
-
+		var endTime = System.currentTimeMillis 
+		var long totalTime = endTime - startTime
+		
 		var stdOutPut = new BufferedReader(new InputStreamReader(testp.getInputStream()));
 
 		var outPut = "";
 		while ((outPut = stdOutPut.readLine()) !== null) {
 			System.out.println(outPut);
 		}
+		System.out.println(totalTime+" nanoseconds");
 
 	}
 
@@ -75,12 +82,13 @@ class JavaCompilerXtend {
 			String strResult = "";
 			ObjectMapper objMapper = new ObjectMapper();
 			JsonNode rootNode = objMapper.readTree(new File("«loadfile.getPath»"));
-		 '''
+		'''
 		for (command : loadfile.getCommands) {
 			if (command instanceof ToString) {
 				java += doToString(command)
 			}
 			if (command instanceof AddElement) {
+				
 				java += doAddElement(command)
 			}
 			if (command instanceof ToCSV) {
@@ -90,6 +98,7 @@ class JavaCompilerXtend {
 				java += doRemoveElement(command)
 			}
 			if (command instanceof EditElement) {
+				
 				java += doEditElement(command)
 			}
 		}
@@ -116,8 +125,8 @@ class JavaCompilerXtend {
 			file.write(strResult);
 			file.flush();
 			
-			System.out.print(strResult);
 			
+			System.out.print(strResult);
 		'''
 
 		return java
@@ -149,7 +158,7 @@ class JavaCompilerXtend {
 			  csvSchemaBuilder.addColumn(fieldName);
 			  } ); 
 			 firstObject = firstObject.elements().next();
-					  }
+			 	  }
 			
 					  
 					  CsvSchema csvSchema = csvSchemaBuilder.build().withHeader();
